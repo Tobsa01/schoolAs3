@@ -1,0 +1,57 @@
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.exe
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.deps.json
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.runtimeconfig.json
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.runtimeconfig.dev.json
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.dll
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.pdb
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.Properties.Resources.resources
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.LoginView.resources
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.View.MainView.resources
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.csproj.GenerateResource.cache
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.AssemblyInfoInputs.cache
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.AssemblyInfo.cs
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.csproj.CoreCompileInputs.cache
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.dll
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.pdb
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.genruntimeconfig.cache
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.View.AdminView.resources
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.View.UserView.resources
+C:\Users\bernhardtdo\source\repos\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.csprojAssemblyReference.cache
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.exe
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.deps.json
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.runtimeconfig.json
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.runtimeconfig.dev.json
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.dll
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.pdb
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.csprojAssemblyReference.cache
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.Properties.Resources.resources
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.View.AdminView.resources
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.LoginView.resources
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.View.MainView.resources
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.View.UserView.resources
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.csproj.GenerateResource.cache
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.AssemblyInfoInputs.cache
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.AssemblyInfo.cs
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.csproj.CoreCompileInputs.cache
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.dll
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.pdb
+C:\Users\eagle\Desktop\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.genruntimeconfig.cache
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.exe
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.deps.json
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.runtimeconfig.json
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.runtimeconfig.dev.json
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.dll
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\bin\Debug\netcoreapp3.1\LiberatorZ.pdb
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.csprojAssemblyReference.cache
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.Properties.Resources.resources
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.View.AdminView.resources
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.LoginView.resources
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.View.MainView.resources
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.View.UserView.resources
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.csproj.GenerateResource.cache
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.AssemblyInfoInputs.cache
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.AssemblyInfo.cs
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.csproj.CoreCompileInputs.cache
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.dll
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.pdb
+C:\Users\AFSAZUBI\Desktop\Neuer Ordner (4)\schoolAs3-EagleModdz-WinForms\schoolAs3-EagleModdz-WinForms\LiberatorZ\LiberatorZ\LiberatorZ\obj\Debug\netcoreapp3.1\LiberatorZ.genruntimeconfig.cache
