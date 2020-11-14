@@ -31,7 +31,17 @@ namespace WindowsFormsApp1
         public static void insertObject<T>(T obj, string tableName)
         {
             string query = QueryBuilder.insertquery(tableName, obj);
-            QueryExecuter.insertQuery(query);
+            QueryExecuter.query(query);
+        }
+        public static void deleteObject<T>(T obj, string tableName)
+        {
+            string query = QueryBuilder.deleteQuery(tableName, obj);
+            QueryExecuter.query(query);
+        }
+        public static void updateObject<T>(T oldObj, T newObj, string tableName)
+        {
+            string query = QueryBuilder.updateQuery(tableName, oldObj, newObj);
+            QueryExecuter.query(query);
         }
     }
 }

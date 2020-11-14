@@ -35,7 +35,7 @@ namespace WindowsFormsApp1
                 return list;
             }
         }
-        public static void insertQuery(string queryString)
+        public static void query(string queryString)
         {
             using (SqlConnection connection = new SqlConnection(
                connectionString))
@@ -47,7 +47,6 @@ namespace WindowsFormsApp1
                 command.Connection.Open();
                 command.ExecuteNonQuery();
                 command.Connection.Close();
-                Properties.Settings.Default.Save();
             }
         }
     }
