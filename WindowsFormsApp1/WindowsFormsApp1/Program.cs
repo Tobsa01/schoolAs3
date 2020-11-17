@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
 namespace WindowsFormsApp1
 {
     static class Program
@@ -44,7 +45,10 @@ namespace WindowsFormsApp1
             bs = bh.books;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Library_Admin());
+            //Application.Run(new Library_Admin());
+
+            var window = new WindowsFormsApp1.View.MainView();
+            Application.Run();
         }
     }
 }

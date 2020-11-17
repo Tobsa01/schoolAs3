@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class Model
+    class Model_deprecated
     {
         LibratorsEntities context = new LibratorsEntities();
 
