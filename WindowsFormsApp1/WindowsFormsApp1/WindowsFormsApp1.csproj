@@ -99,7 +99,9 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.8.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.8\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -142,33 +144,45 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
-    <Compile Include="Bookadministration.cs">
+    <Compile Include="Controller\BookAdminController.cs" />
+    <Compile Include="Model\BookAdminModel.cs" />
+    <Compile Include="View\Bookadministration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bookadministration.Designer.cs">
+    <Compile Include="View\Bookadministration.Designer.cs">
       <DependentUpon>Bookadministration.cs</DependentUpon>
     </Compile>
     <Compile Include="BookHandler.cs" />
     <Compile Include="Books.cs">
       <DependentUpon>LibratorsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controller\AdminController.cs" />
+    <Compile Include="Controller\ControllerManager.cs" />
+    <Compile Include="Controller\IController.cs" />
+    <Compile Include="Controller\LoginController.cs" />
+    <Compile Include="Controller\MainController.cs" />
+    <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Model\AdminModel.cs" />
+    <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Model\MainModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="QueryBuilder.cs" />
     <Compile Include="QueryExecuter.cs" />
-    <Compile Include="Controller.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Controller\Controller.cs" />
     <Compile Include="Issues.cs">
       <DependentUpon>LibratorsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Library_Admin.cs">
+    <Compile Include="View\BookAdminView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\BookAdminView.designer.cs">
+      <DependentUpon>BookAdminView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Library_Admin.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Library_Admin.Designer.cs">
+    <Compile Include="View\Library_Admin.Designer.cs">
       <DependentUpon>Library_Admin.cs</DependentUpon>
     </Compile>
     <Compile Include="LibratorsModel.Context.cs">
@@ -194,22 +208,46 @@
     <Compile Include="Reservations.cs">
       <DependentUpon>LibratorsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Useradministration.cs">
+    <Compile Include="View\Useradministration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Useradministration.Designer.cs">
+    <Compile Include="View\Useradministration.Designer.cs">
       <DependentUpon>Useradministration.cs</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>LibratorsModel.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Bookadministration.resx">
+    <Compile Include="View\AdminView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AdminView.Designer.cs">
+      <DependentUpon>AdminView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\UserView.Designer.cs">
+      <DependentUpon>UserView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\Bookadministration.resx">
       <DependentUpon>Bookadministration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="View\BookAdminView.resx">
+      <DependentUpon>BookAdminView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Library_Admin.resx">
+    <EmbeddedResource Include="View\Library_Admin.resx">
       <DependentUpon>Library_Admin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -221,8 +259,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Useradministration.resx">
+    <EmbeddedResource Include="View\Useradministration.resx">
       <DependentUpon>Useradministration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AdminView.resx">
+      <DependentUpon>AdminView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UserView.resx">
+      <DependentUpon>UserView.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="LibratorsModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
