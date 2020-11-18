@@ -145,6 +145,7 @@
   <ItemGroup>
     <Compile Include="Book.cs" />
     <Compile Include="Controller\BookAdminController.cs" />
+    <Compile Include="CurrentUser.cs" />
     <Compile Include="Model\BookAdminModel.cs" />
     <Compile Include="View\Bookadministration.cs">
       <SubType>Form</SubType>
@@ -200,7 +201,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LibratorsModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model.cs" />
+    <Compile Include="UsersModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandlerBook.cs" />

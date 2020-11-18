@@ -39,12 +39,12 @@ namespace WindowsFormsApp1
         {
             //Model.AddUserToDictionary();
             //Model.AddUserToAdminList();
-            string userListPassword = "";
-            if (Model.Userlist.TryGetValue(username, out userListPassword))
+            Users emptyUser = new Users();
+            Users loginUser = UsersModel.select_User_for_Login(username, password);
+            CurrentUser.setCurrentUser(loginUser);
+            if (CurrentUser.getInstance() != emptyUser)
             {
-                if (password == userListPassword)
-                {
-                    if (IsAdmin(username))
+                    if (CurrentUser.getAdmin())
                     {
                         HideForm();
                         var admin = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.AdminController>();
@@ -62,7 +62,7 @@ namespace WindowsFormsApp1
                 {
                     View.SetErrorLabel("Username or Password is incorrect!");
                 }
-            }
+            
         }
 
         public bool IsAdmin(string username)
