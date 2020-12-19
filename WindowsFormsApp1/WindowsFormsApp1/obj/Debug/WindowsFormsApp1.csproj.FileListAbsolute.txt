@@ -68,7 +68,6 @@ C:\Users\AFSAZUBI\Desktop\Librators\schoolAs3\schoolAs3\WindowsFormsApp1\Windows
 C:\Users\AFSAZUBI\Desktop\Librators\schoolAs3\schoolAs3\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Library_Admin.cs
 C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Librators.mdf
 C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Librators_log.ldf
-C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Library_Admin.cs
 C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
 C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
 C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
@@ -125,7 +124,6 @@ C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\bin\
 C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\de\EntityFramework.SqlServer.resources.dll
 C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
 C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Bookadministration.resources
-C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
 C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Library_Admin.resources
 C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
 C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Useradministration.resources
@@ -274,3 +272,9 @@ C:\Users\AFSAZUBI\Documents\_ASProjekt\schoolAs3-master(1)\schoolAs3-master\Wind
 C:\Users\AFSAZUBI\Documents\_ASProjekt\schoolAs3-master(1)\schoolAs3-master\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.View.MainView.resources
 C:\Users\AFSAZUBI\Documents\_ASProjekt\schoolAs3-master(1)\schoolAs3-master\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.View.UserView.resources
 C:\Users\AFSAZUBI\Documents\_ASProjekt\schoolAs3-master(1)\schoolAs3-master\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\View\Library_Admin.cs
+C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\View\Library_Admin.cs
+C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.View.BookAdminView.resources
+C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.View.AdminView.resources
+C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.View.LoginView.resources
+C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.View.MainView.resources
+C:\Users\Sandra Densch\Desktop\AS-Projekt\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.View.UserView.resources
