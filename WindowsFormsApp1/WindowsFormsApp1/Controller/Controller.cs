@@ -9,7 +9,7 @@ namespace WindowsFormsApp1.Controller
 {
     class Controller
     {
-        Model_deprecated model = new Model_deprecated();
+        Model.UserModel model = new Model.UserModel();
 
         public void login(string email, string password)
         {
