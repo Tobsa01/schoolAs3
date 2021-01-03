@@ -23,5 +23,23 @@ namespace WindowsFormsApp1.View
             Controller = controller;
             Model = Controller.Model;
         }
+
+       
+        public void HideForm()
+        {
+            Hide();
+        }
+
+        public void ShowForm()
+        {
+            Show();
+        }
+
+        private void BookAdminView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Controller.CloseProgram();
+        }
     }
 }
+
+

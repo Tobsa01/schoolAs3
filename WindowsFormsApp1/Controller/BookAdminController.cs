@@ -6,7 +6,7 @@ namespace WindowsFormsApp1.Controller
 {
     public class BookAdminController : IController
     {
-        private BookAdminView View { get; }
+        public BookAdminView View { get; }
         public BookAdminModel Model { get; }
 
         public BookAdminController()
@@ -14,5 +14,24 @@ namespace WindowsFormsApp1.Controller
             Model = new BookAdminModel();
             View = new BookAdminView(this);
         }
+
+
+        public void HideForm()
+        {
+            View.HideForm();
+        }
+
+        public void ShowForm()
+        {
+            View.ShowForm();
+        }
+
+       
+        public void CloseProgram()
+        {
+            var mainController = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.MainController>();
+            mainController.CloseForm();
+        }
+
     }
 }

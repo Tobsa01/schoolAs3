@@ -10,6 +10,7 @@ namespace WindowsFormsApp1.Controller
     class Controller
     {
         Model.UserModel model = new Model.UserModel();
+        Model.BookAdminModel modelB = new Model.BookAdminModel();
 
         public void login(string email, string password)
         {
@@ -32,6 +33,11 @@ namespace WindowsFormsApp1.Controller
         public void add_User(string lastName, string firstName, string email, int MANumber, string role, string password)
         {
             model.insert_User(lastName, firstName, email, MANumber, role, password);
+        }
+
+        public void add_Book(string author, string condition, string description, string inventarnr, string isbn, string publisher, string x)
+        {
+            modelB.insert_Book(author, condition, description, inventarnr, isbn, publisher, x);
         }
     }
 }
