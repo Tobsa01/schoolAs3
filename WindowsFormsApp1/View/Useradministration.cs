@@ -10,14 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using WindowsFormsApp1.Controller;
-using WindowsFormsApp1.Model;
 
 namespace WindowsFormsApp1
 {
     public partial class Useradministration : Form
     {
         private UserController Controller { get; }
-        private WindowsFormsApp1.Model.UserModel Model { get; }
+        private UserModel Model { get; }
 
         public Useradministration(UserController controller)
         {

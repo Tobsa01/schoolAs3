@@ -9,30 +9,18 @@ namespace WindowsFormsApp1.Controller
 {
     class Controller
     {
-        Model.UserModel model = new Model.UserModel();
+        UserModel model = new UserModel();
         Model.BookAdminModel modelB = new Model.BookAdminModel();
 
         public void login(string email, string password)
         {
-            // ToDo: Passwort verschlüsseln
-            List<Users> user = model.select_User_for_Login(email, password);
-            if (user.Count == 0)
-            {
-                // ToDo: Kein Nutzer mit diesen Credentials vorhanden
-            }
-            else if (user.Count == 1)
-            {
-                // ToDo: Login
-            }
-            else
-            {
-                // ToDo: Credentials nicht eindeutig
-            }
+            Users user = UserModel.select_User_for_Login(email, password);
+            CurrentUser.setCurrentUser(user);
         }
 
         public void add_User(string lastName, string firstName, string email, int MANumber, string role, string password)
         {
-            model.insert_User(lastName, firstName, email, MANumber, role, password);
+            UserModel.insert_User(lastName, firstName, email, MANumber, role, password);
         }
 
         public void add_Book(string author, string condition, string description, string inventarnr, string isbn, string publisher, string x)

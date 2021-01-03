@@ -147,6 +147,7 @@
     <Compile Include="Controller\BookAdminController.cs" />
     <Compile Include="Controller\BookController.cs" />
     <Compile Include="Model\BookAdminModel.cs" />
+    <Compile Include="Model\CurrentUser.cs" />
     <Compile Include="View\Bookadministration.cs">
       <SubType>Form</SubType>
     </Compile>
