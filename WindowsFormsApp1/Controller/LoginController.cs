@@ -41,7 +41,7 @@ namespace WindowsFormsApp1
             //Model.AddUserToAdminList();
             Users loginUser = UserModel.select_User_for_Login(username, password);
             CurrentUser.setCurrentUser(loginUser);
-            if (CurrentUser.getInstance().EncryptedPW != "") {
+            if (CurrentUser.getInstance().LastName != null) {
                 if (CurrentUser.getAdmin()) {
                         HideForm();
                         var admin = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.AdminController>();

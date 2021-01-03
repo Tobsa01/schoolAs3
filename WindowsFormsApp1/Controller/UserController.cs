@@ -37,5 +37,14 @@ namespace WindowsFormsApp1.Controller
         {
             View.ShowForm();
         }
+        public void add()
+        {
+            var addUserController = ControllerManager.Get<AddUserController>();
+            addUserController.ShowForm();
+        }
+        public void refresh()
+        {
+            View.refresh();
+        }
     }
 }
