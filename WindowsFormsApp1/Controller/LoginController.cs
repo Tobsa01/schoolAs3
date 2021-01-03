@@ -39,32 +39,23 @@ namespace WindowsFormsApp1
         {
             //Model.AddUserToDictionary();
             //Model.AddUserToAdminList();
-            string userListPassword = "";
-            if (Model.Userlist.TryGetValue(username, out userListPassword))
-            {
-                if (password == userListPassword)
-                {
-                    if (IsAdmin(username))
-                    {
+            Users loginUser = UserModel.select_User_for_Login(username, password);
+            CurrentUser.setCurrentUser(loginUser);
+            if (CurrentUser.getInstance().EncryptedPW != "") {
+                if (CurrentUser.getAdmin()) {
                         HideForm();
                         var admin = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.AdminController>();
                         admin.ShowForm();
-                        
-                    }
-                    else
-                    {
-                        HideForm();
-                        var user = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.UserController>();
-                        user.ShowForm();
+                } else {
+                    HideForm();
+                    var user = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.UserController>();
+                    user.ShowForm();
                     }
                 }
-                else
-                {
-                    View.SetErrorLabel("Username or Password is incorrect!");
-                }
+            else {
+                View.SetErrorLabel("Username or Password is incorrect!");
             }
         }
-
         public bool IsAdmin(string username)
         {
             foreach (var user in Model.Adminlist)
