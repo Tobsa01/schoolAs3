@@ -37,14 +37,22 @@ namespace WindowsFormsApp1.Controller
         {
             View.ShowForm();
         }
-        public void add()
+
+        public void Back()
+        {
+            HideForm();
+            var admin = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.AdminController>();
+            admin.ShowForm();
+        }
+        public void Add()
         {
             var addUserController = ControllerManager.Get<AddUserController>();
             addUserController.ShowForm();
         }
-        public void refresh()
+
+        public void Refresh()
         {
-            View.refresh();
+            View.Refresh();
         }
     }
 }

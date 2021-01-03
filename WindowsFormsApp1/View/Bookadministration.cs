@@ -16,7 +16,7 @@ namespace WindowsFormsApp1
 {
     public partial class Bookadministration : Form
     {
-        private BookController Controller { get;}
+        private BookController Controller { get; }
         private WindowsFormsApp1.Model.BookAdminModel Model { get; }
 
         public Bookadministration(BookController controller)
@@ -42,50 +42,67 @@ namespace WindowsFormsApp1
         {
             try
             {
-                // Specify a connection string.
-                // Replace <SQL Server> with the SQL Server for your Northwind sample database.
-                // Replace "Integrated Security=True" with user login information if necessary.
                 String connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
-                /* @"Data Source=.\SQLEXPRESS;" +
-                @"AttachDbFilename=|DataDirectory|\SampleDB.mdf;
-                 Integrated Security=True;
-                 Connect Timeout=30;
-                 User Instance=True";*/
-                // Create a new data adapter based on the specified query.
                 dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
-
-                // Create a command builder to generate SQL update, insert, and
-                // delete commands based on selectCommand.
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
-
-                // Populate a new data table and bind it to the BindingSource.
                 DataTable table = new DataTable
                 {
                     Locale = System.Globalization.CultureInfo.InvariantCulture
                 };
                 dataAdapter.Fill(table);
                 bindingSource1.DataSource = table;
-
-                // Resize the DataGridView columns to fit the newly loaded content.
                 dataGridView1.AutoResizeColumns(
-                    DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+                    DataGridViewAutoSizeColumnsMode.AllCells);
+                dataAdapter.Update((DataTable)bindingSource1.DataSource);
+
             }
-            catch (SqlException)
+            catch (SqlException sql)
             {
-                MessageBox.Show("To run this example, replace the value of the " +
-                    "connectionString variable with a connection string that is " +
-                    "valid for your system.");
+                MessageBox.Show("Keine Einträge vorhanden! " + sql.Message);
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Bind the DataGridView to the BindingSource
-            // and load the data from the database.
             dataGridView1.DataSource = bindingSource1;
             GetData("select * from Books");
         }
+        private void SucheBuch()
+        {
+            dataGridView1.DataSource = bindingSource1;
+            String text = "SELECT * FROM Books Where Author LIKE '%" + textBox1.Text + "%'  OR ISBN ='" + textBox1.Text + "' OR  Title LIKE '%" + textBox1.Text + "%'";
+            GetData(text);
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SucheBuch();
+        }
 
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView1.DataSource = bindingSource1;
+            int rowIndex = e.RowIndex;
+            DataGridViewRow row = dataGridView1.Rows[rowIndex];
+            String inv = row.Cells[0].Value.ToString();
+
+            GetData("INSERT INTO Reservations (FK_ISBN, FK_Inventar_Number, FK_UserID, FK_MANumber, ReservationDate) " +
+                "Values ((SELECT ISBN FROM Books Where Inventar_Number= '"+ inv +"'), '"+ inv +
+                "', 1, 1234, CURRENT_TIMESTAMP)");
+
+            dataAdapter.Update((DataTable)bindingSource1.DataSource);
+
+            GetData("INSERT INTO Issues (FK_ISBN, FK_Inventar_Number, FK_UserID, FK_MANumber, ReturnDate, StartDate, IssueState) " +
+                "Values ((SELECT ISBN FROM Books Where Inventar_Number= '" + inv + "'), '" + inv +
+                "', 1, 1234, DATEADD(month, 1, CURRENT_TIMESTAMP), CURRENT_TIMESTAMP, 'aus')");
+            dataAdapter.Update((DataTable)bindingSource1.DataSource);
+
+            GetData("SELECT * FROM Reservations");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Controller.Back();
+        }
     }
 }

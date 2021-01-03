@@ -25,15 +25,6 @@ namespace WindowsFormsApp1.Controller
             View.ShowForm();
         }
 
-
-        public void Logout()
-        {
-            HideForm();
-            var loginController = ControllerManager.Get<LoginController>();
-            loginController.ClearForm();
-            loginController.ShowForm();
-        }
-
         public void CloseProgram()
         {
             var mainController = ControllerManager.Get<MainController>();
@@ -43,6 +34,13 @@ namespace WindowsFormsApp1.Controller
         public void HideForm()
         {
             View.HideForm();
+        }
+
+        public void Back()
+        {
+            HideForm();
+            var admin = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.AdminController>();
+            admin.ShowForm();
         }
     }
 }

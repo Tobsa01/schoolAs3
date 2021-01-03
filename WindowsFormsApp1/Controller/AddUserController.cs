@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApp1.View;
+using WindowsFormsApp1.Model;
 
 namespace WindowsFormsApp1.Controller
 {
@@ -28,7 +29,7 @@ namespace WindowsFormsApp1.Controller
         {
             View.HideForm();
             var userView = ControllerManager.Get<UserController>();
-            userView.refresh();
+            userView.Refresh();
         } 
         
     }

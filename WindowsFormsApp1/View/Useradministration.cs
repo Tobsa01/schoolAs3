@@ -10,13 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using WindowsFormsApp1.Controller;
+using WindowsFormsApp1.Model;
 
 namespace WindowsFormsApp1
 {
     public partial class Useradministration : Form
     {
         private UserController Controller { get; }
-        private UserModel Model { get; }
+        private WindowsFormsApp1.Model.UserModel Model { get; }
 
         public Useradministration(UserController controller)
         {
@@ -41,39 +42,23 @@ namespace WindowsFormsApp1
         {
             try
             {
-                // Specify a connection string.
-                // Replace <SQL Server> with the SQL Server for your Northwind sample database.
-                // Replace "Integrated Security=True" with user login information if necessary.
+              
                 String connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
-               /* @"Data Source=.\SQLEXPRESS;" +
-               @"AttachDbFilename=|DataDirectory|\SampleDB.mdf;
-                Integrated Security=True;
-                Connect Timeout=30;
-                User Instance=True";*/
-                // Create a new data adapter based on the specified query.
+              
                 dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
-
-                // Create a command builder to generate SQL update, insert, and
-                // delete commands based on selectCommand.
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
-
-                // Populate a new data table and bind it to the BindingSource.
                 DataTable table = new DataTable
                 {
                     Locale = System.Globalization.CultureInfo.InvariantCulture
                 };
                 dataAdapter.Fill(table);
                 bindingSource1.DataSource = table;
-
-                // Resize the DataGridView columns to fit the newly loaded content.
                 dataGridView1.AutoResizeColumns(
                     DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
             }
             catch (SqlException)
             {
-                MessageBox.Show("To run this example, replace the value of the " +
-                    "connectionString variable with a connection string that is " +
-                    "valid for your system.");
+                MessageBox.Show("User wurde nicht gefunden");
             }
         }
 
@@ -85,13 +70,29 @@ namespace WindowsFormsApp1
             GetData("select * from Users");
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            Controller.add();
+            SucheNutzer();
         }
-        public void refresh()
+
+        private void SucheNutzer()
         {
-            GetData("select * from Users");
+            dataGridView1.DataSource = bindingSource1;
+            String text = "SELECT * FROM Users Where FirstName LIKE '" + textBox1.Text + "%'  OR LastName LIKE '" + textBox1.Text + "%' OR  MANumber ='" + textBox1.Text + "'";
+            GetData(text);
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Controller.Back();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+                Controller.Add();
+            
         }
     }
 }
