@@ -85,5 +85,13 @@ namespace WindowsFormsApp1
             GetData("select * from Users");
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Controller.add();
+        }
+        public void refresh()
+        {
+            GetData("select * from Users");
+        }
     }
 }
