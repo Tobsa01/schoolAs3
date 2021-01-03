@@ -1,18 +1,30 @@
-﻿using WindowsFormsApp1.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WindowsFormsApp1.Controller;
+using WindowsFormsApp1.Model;
 using WindowsFormsApp1.View;
 
 namespace WindowsFormsApp1.Controller
 {
-    public class UserController : IController
+    public class BookController : IController
     {
-        private Useradministration View { get; }
-        public UserModel Model { get; }
+        private Bookadministration View { get; }
+        public WindowsFormsApp1.Model.BookAdminModel Model { get; }
 
-        public UserController()
+        public BookController()
         {
-            Model = new UserModel();
-            View = new Useradministration(this);
+            Model = new BookAdminModel();
+            View = new Bookadministration(this);
         }
+
+        public void ShowForm()
+        {
+            View.ShowForm();
+        }
+
 
         public void Logout()
         {
@@ -31,11 +43,6 @@ namespace WindowsFormsApp1.Controller
         public void HideForm()
         {
             View.HideForm();
-        }
-
-        public void ShowForm()
-        {
-            View.ShowForm();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Users
     {
         public int UserID { get; set; }
@@ -23,3 +23,4 @@ namespace WindowsFormsApp1
         public string EncryptedPW { get; set; }
     }
 }
+
