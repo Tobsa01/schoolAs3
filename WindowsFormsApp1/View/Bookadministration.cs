@@ -18,6 +18,10 @@ namespace WindowsFormsApp1
     {
         private BookController Controller { get;}
         private WindowsFormsApp1.Model.BookAdminModel Model { get; }
+        private BindingSource bindingSource1 = new BindingSource();
+        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
+        DataTable table = new DataTable {Locale = System.Globalization.CultureInfo.InvariantCulture};
+        private bool first_load = true;
 
         public Bookadministration(BookController controller)
         {
@@ -36,35 +40,42 @@ namespace WindowsFormsApp1
             Show();
         }
 
-        private BindingSource bindingSource1 = new BindingSource();
-        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
+
         private void GetData(string selectCommand)
         {
             try
             {
-                // Specify a connection string.
-                // Replace <SQL Server> with the SQL Server for your Northwind sample database.
-                // Replace "Integrated Security=True" with user login information if necessary.
+                // Specify a connection string
                 String connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
-                /* @"Data Source=.\SQLEXPRESS;" +
-                @"AttachDbFilename=|DataDirectory|\SampleDB.mdf;
-                 Integrated Security=True;
-                 Connect Timeout=30;
-                 User Instance=True";*/
-                // Create a new data adapter based on the specified query.
+                // Create a new data adapter based on the specified query
                 dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
-
-                // Create a command builder to generate SQL update, insert, and
-                // delete commands based on selectCommand.
+                // Create a command builder to generate SQL update, insert, and delete commands based on selectCommand
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
 
-                // Populate a new data table and bind it to the BindingSource.
-                DataTable table = new DataTable
-                {
-                    Locale = System.Globalization.CultureInfo.InvariantCulture
-                };
+                // Bind data table to the BindingSource
                 dataAdapter.Fill(table);
                 bindingSource1.DataSource = table;
+
+                // Add additional column for filtering 
+                if (first_load)
+                {
+                    DataColumn dcRowString = table.Columns.Add("_RowString", typeof(string));
+                    // build filter string
+                    foreach (DataRow dataRow in table.Rows)
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < table.Columns.Count - 1; i++)
+                        {
+                            sb.Append(dataRow[i].ToString());
+                            sb.Append("\t");
+                        }
+                        dataRow[dcRowString] = sb.ToString();
+                    }
+                    first_load = false;
+                }
+
+                // Hide filter string column
+                dataGridView1.Columns["_RowString"].Visible = false;
 
                 // Resize the DataGridView columns to fit the newly loaded content.
                 dataGridView1.AutoResizeColumns(
@@ -80,12 +91,15 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Bind the DataGridView to the BindingSource
-            // and load the data from the database.
+            // Bind the DataGridView to the BindingSource and load the data from the database
             dataGridView1.DataSource = bindingSource1;
             GetData("select * from Books");
         }
 
-
+        // Filter triggern
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
+        }
     }
 }
