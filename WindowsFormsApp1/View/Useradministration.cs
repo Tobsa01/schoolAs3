@@ -54,13 +54,8 @@ namespace WindowsFormsApp1
               
                 dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
-                DataTable table = new DataTable
-                {
-                    Locale = System.Globalization.CultureInfo.InvariantCulture
-                };
                 dataAdapter.Fill(table);
                 bindingSource1.DataSource = table;
-
 
                 // Add additional column for filtering 
                 if (first_load) 
@@ -130,6 +125,11 @@ namespace WindowsFormsApp1
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
+        }
+        public void RefreshData()
+        {
+            dataGridView1.DataSource = bindingSource1;
+            GetData("SELECT * FROM Users");
         }
     }
 }

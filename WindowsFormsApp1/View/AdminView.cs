@@ -17,6 +17,10 @@ namespace WindowsFormsApp1
     {
         private AdminController Controller { get; }
         private WindowsFormsApp1.Model.AdminModel Model { get; }
+        DataTable table = new DataTable { Locale = System.Globalization.CultureInfo.InvariantCulture };
+        private BindingSource bindingSource1 = new BindingSource();
+        private BindingSource bindingSource2 = new BindingSource();
+        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
 
         public Library_Admin(AdminController controller)
         {
@@ -60,21 +64,14 @@ namespace WindowsFormsApp1
         {
             Controller.User();
         }
-        private BindingSource bindingSource1 = new BindingSource();
-        private BindingSource bindingSource2 = new BindingSource();
-        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
+       
         private void GetData(string selectCommand, DataGridView dgv, BindingSource bs)
         {
             try
             {
                 String connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
-
                 dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
-                DataTable table = new DataTable
-                {
-                    Locale = System.Globalization.CultureInfo.InvariantCulture
-                };
                 dataAdapter.Fill(table);
                 bs.DataSource = table;
                 dgv.AutoResizeColumns(

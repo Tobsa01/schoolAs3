@@ -50,9 +50,9 @@ namespace WindowsFormsApp1.Controller
             addUserController.ShowForm();
         }
 
-        public void Refresh()
+        public void RefreshData()
         {
-            View.Refresh();
+            View.RefreshData();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace WindowsFormsApp1.Controller
         {
             View.HideForm();
             var userView = ControllerManager.Get<UserController>();
-            userView.Refresh();
+            userView.RefreshData();
         } 
         
     }
