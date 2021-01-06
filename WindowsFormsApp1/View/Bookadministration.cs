@@ -22,6 +22,9 @@ namespace WindowsFormsApp1
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         DataTable table = new DataTable { Locale = System.Globalization.CultureInfo.InvariantCulture };
         private bool first_load = true;
+        private int positionDelete;
+        private int positionReserve;
+        private int positionUpdate;
 
         public Bookadministration(BookController controller)
         {
@@ -72,18 +75,32 @@ namespace WindowsFormsApp1
                 
                 // Hide filter string column
                 dataGridView1.Columns["_RowString"].Visible = false;
-
+                addButton("Löschen", ref positionDelete);
+                addButton("Reservieren", ref positionReserve);
+                addButton("Bearbeiten", ref positionUpdate);
 
                 // Resize the DataGridView columns to fit the newly loaded content.
 
                 dataGridView1.AutoResizeColumns(
                     DataGridViewAutoSizeColumnsMode.AllCells);
                 dataAdapter.Update((DataTable)bindingSource1.DataSource);
+                // dataGridView1.CellClick += dataGridView1_CellClick;
 
             }
             catch (SqlException sql)
             {
                 MessageBox.Show("Keine Einträge vorhanden! " + sql.Message);
+            }
+        }
+        private void addButton(string buttonName, ref int place)
+        {
+            DataGridViewButtonColumn button = new DataGridViewButtonColumn();
+            button.Name = buttonName;
+            button.Text = buttonName;
+            if (dataGridView1.Columns[buttonName] == null)
+            {
+                dataGridView1.Columns.Add(button);
+                place = dataGridView1.Columns.Count - 1;
             }
         }
 
@@ -109,23 +126,34 @@ namespace WindowsFormsApp1
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView1.DataSource = bindingSource1;
-            int rowIndex = e.RowIndex;
-            DataGridViewRow row = dataGridView1.Rows[rowIndex];
-            String inv = row.Cells[0].Value.ToString();
+            string inventoryNumber = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string iSBN = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            if (e.ColumnIndex == positionDelete)
+            {
+                Controller.Delete(iSBN, inventoryNumber);
+            }
+            if (e.ColumnIndex == positionReserve)
+            {
+                Controller.ReserveBook(iSBN, inventoryNumber);
+            }
+            if (e.ColumnIndex == positionUpdate)
+            {
+                Controller.ShowBookInformation(iSBN, inventoryNumber);
+            }
+                //    GetData("INSERT INTO Reservations (FK_ISBN, FK_Inventar_Number, FK_UserID, FK_MANumber, ReservationDate) " +
+                //        "Values ((SELECT ISBN FROM Books Where Inventar_Number= '" + inv + "'), '" + inv +
+                //        "', 1, 1234, CURRENT_TIMESTAMP)");
 
-            GetData("INSERT INTO Reservations (FK_ISBN, FK_Inventar_Number, FK_UserID, FK_MANumber, ReservationDate) " +
-                "Values ((SELECT ISBN FROM Books Where Inventar_Number= '" + inv + "'), '" + inv +
-                "', 1, 1234, CURRENT_TIMESTAMP)");
+                //    dataAdapter.Update((DataTable)bindingSource1.DataSource);
 
-            dataAdapter.Update((DataTable)bindingSource1.DataSource);
+                //    GetData("INSERT INTO Issues (FK_ISBN, FK_Inventar_Number, FK_UserID, FK_MANumber, ReturnDate, StartDate, IssueState) " +
+                //        "Values ((SELECT ISBN FROM Books Where Inventar_Number= '" + inv + "'), '" + inv +
+                //        "', 1, 1234, DATEADD(month, 1, CURRENT_TIMESTAMP), CURRENT_TIMESTAMP, 'aus')");
+                //    dataAdapter.Update((DataTable)bindingSource1.DataSource);
 
-            GetData("INSERT INTO Issues (FK_ISBN, FK_Inventar_Number, FK_UserID, FK_MANumber, ReturnDate, StartDate, IssueState) " +
-                "Values ((SELECT ISBN FROM Books Where Inventar_Number= '" + inv + "'), '" + inv +
-                "', 1, 1234, DATEADD(month, 1, CURRENT_TIMESTAMP), CURRENT_TIMESTAMP, 'aus')");
-            dataAdapter.Update((DataTable)bindingSource1.DataSource);
-
-            GetData("SELECT * FROM Reservations");
-        }
+                //    GetData("SELECT * FROM Reservations");
+                //
+            }
 
         private void button2_Click(object sender, EventArgs e)
         {
