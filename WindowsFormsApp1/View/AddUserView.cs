@@ -31,10 +31,6 @@ namespace WindowsFormsApp1.View
             Show();
         }
 
-        private void AddUser_Load(object sender, EventArgs e)
-        {
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 

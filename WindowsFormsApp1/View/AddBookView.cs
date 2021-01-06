@@ -48,7 +48,7 @@ namespace WindowsFormsApp1.View
 
         private void AddBookView_Load(object sender, EventArgs e)
         {
-
+            InitializeComponent();
         }
 
         private void label6_Click(object sender, EventArgs e)
