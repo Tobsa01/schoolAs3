@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApp1.View;
-using WindowsFormsApp1.Model;
 
 namespace WindowsFormsApp1.Controller
 {
     public class AddUserController : IController
     {
         private AddUserView View;
-        // Model = new WindowsFormsApp1.Model.AdminModel();
         public AddUserController()
         {
             View = new AddUserView(this);

@@ -19,6 +19,7 @@ namespace WindowsFormsApp1.Controller
             ControllerManager.Register(new BookAdminController());
             ControllerManager.Register(new BookController());
             ControllerManager.Register(new AddUserController());
+            ControllerManager.Register(new AddBookController());
             OnStart();
         }
 

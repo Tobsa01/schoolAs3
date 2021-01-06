@@ -9,7 +9,7 @@ namespace WindowsFormsApp1.Model
     public class BookAdminModel
     {
 
-        private LibratorsEntities context = new LibratorsEntities();
+        private static LibratorsEntities context = new LibratorsEntities();
 
         public List<Books> select_Book(string author, string isbn)
         {
@@ -20,7 +20,7 @@ namespace WindowsFormsApp1.Model
             return query.ToList();
         }
 
-        public void insert_Book(string author, string condition, string description, string inventarnr, string isbn, string publisher, string x)
+        public static void insert_Book(string author, string condition, string description, string inventarnr, string isbn, string publisher, string title)
         {
             Books book = new Books
             {
@@ -30,7 +30,7 @@ namespace WindowsFormsApp1.Model
                 Inventar_Number=inventarnr,
                 ISBN=isbn,
                 Publisher=publisher,
-                Title=x   
+                Title=title
             };
             context.Books.Add(book);
             context.SaveChanges();

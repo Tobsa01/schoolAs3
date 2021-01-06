@@ -42,5 +42,16 @@ namespace WindowsFormsApp1.Controller
             var admin = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.AdminController>();
             admin.ShowForm();
         }
+
+        public void RefreshData()
+        {
+            View.RefreshData();
+        }
+
+        public void Add()
+        {
+            var addBook = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.AddBookController>();
+            addBook.ShowForm();
+        }
     }
 }
