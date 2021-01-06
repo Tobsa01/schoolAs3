@@ -187,7 +187,7 @@
             this.Controls.Add(this.txtFirstName);
             this.Name = "AddUserView";
             this.Text = "AddUser";
-            this.Load += new System.EventHandler(this.AddUser_Load);
+            this.Load += new System.EventHandler(this.label1_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

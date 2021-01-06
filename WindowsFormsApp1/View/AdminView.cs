@@ -17,10 +17,14 @@ namespace WindowsFormsApp1
     {
         private AdminController Controller { get; }
         private WindowsFormsApp1.Model.AdminModel Model { get; }
-        DataTable table = new DataTable { Locale = System.Globalization.CultureInfo.InvariantCulture };
+       
         private BindingSource bindingSource1 = new BindingSource();
         private BindingSource bindingSource2 = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
+        DataTable table = new DataTable { Locale = System.Globalization.CultureInfo.InvariantCulture };
+
+        private bool first_load = true;
+
 
         public Library_Admin(AdminController controller)
         {
@@ -69,11 +73,33 @@ namespace WindowsFormsApp1
         {
             try
             {
+                table.Clear();
                 String connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
                 dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+                if (first_load)
+                {
+                    DataColumn dcRowString = table.Columns.Add("_RowString", typeof(string)); //System.Data.DuplicateNameException
+                                                                                              // build filter string
+                    foreach (DataRow dataRow in table.Rows)
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < table.Columns.Count - 1; i++)
+                        {
+                            sb.Append(dataRow[i].ToString());
+                            sb.Append("\t");
+                        }
+                        dataRow[dcRowString] = sb.ToString();
+                    }
+                    first_load = false;
+                }
+
+                // Hide filter string column
+               
                 dataAdapter.Fill(table);
+
                 bs.DataSource = table;
+                dataGridView1.Columns["_RowString"].Visible = false;
                 dgv.AutoResizeColumns(
                     DataGridViewAutoSizeColumnsMode.AllCells);
             }
@@ -91,6 +117,10 @@ namespace WindowsFormsApp1
             GetData("select * from Reservations;", dataGridView2, bindingSource2);
         }
 
+        private void Search_txb_TextChanged(object sender, EventArgs e)
+        {
+            table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", Search_txb.Text);
 
+        }
     }
 }
