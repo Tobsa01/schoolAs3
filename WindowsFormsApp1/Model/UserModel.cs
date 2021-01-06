@@ -61,7 +61,7 @@ namespace WindowsFormsApp1
         public static Users select_User_for_Login(string email, string password)
         {
             Users res = new Users();
-            string encryptedPassword = sha256.ComputeHash(Encoding.UTF8.GetBytes(password + salt)).ToString();
+            string encryptedPassword = passwordGenerator(password);
             var query = from user in context.Users
                         where user.EMailAddress == email && user.EncryptedPW == encryptedPassword
                         select user;
@@ -105,7 +105,7 @@ namespace WindowsFormsApp1
         }
         private static string passwordGenerator(string password)
         {
-            return sha256.ComputeHash(Encoding.UTF8.GetBytes(password + salt)).ToString();
+            return Encoding.UTF8.GetString(sha256.ComputeHash(Encoding.UTF8.GetBytes(password + salt)));
         }
     }
 }
