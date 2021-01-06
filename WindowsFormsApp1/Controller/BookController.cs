@@ -47,11 +47,27 @@ namespace WindowsFormsApp1.Controller
         {
             View.RefreshData();
         }
-
+        public void Delete(string iSBN, string inventoryNumber)
+        {
+            BookAdminModel.delete_Book(iSBN, inventoryNumber);
+            RefreshData();
+        }
         public void Add()
         {
             var addBook = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.AddBookController>();
             addBook.ShowForm();
+        }
+        public void ReserveBook(string iSBN, string inventory_Number)
+        {
+            int id = BookAdminModel.maxReservationId();
+            Reservation res = new Reservation(id, iSBN, inventory_Number, CurrentUser.getUserId(), CurrentUser.getMANumber());
+            BookAdminModel.reserveBook(res);
+        }
+        public void ShowBookInformation(string iSBN, string inventory_Number)
+        {
+            Books b = BookAdminModel.select_Book(inventory_Number, iSBN);
+            var bcontroller = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.AddBookController>();
+            bcontroller.updateBook(b);
         }
     }
 }

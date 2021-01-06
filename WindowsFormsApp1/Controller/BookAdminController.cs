@@ -1,6 +1,7 @@
 ﻿using WindowsFormsApp1.Model;
 using WindowsFormsApp1.View;
 using WindowsFormsApp1.Controller;
+using System;
 
 namespace WindowsFormsApp1.Controller
 {
@@ -33,6 +34,5 @@ namespace WindowsFormsApp1.Controller
             var mainController = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.MainController>();
             mainController.CloseForm();
         }
-
     }
 }

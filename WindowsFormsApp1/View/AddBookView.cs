@@ -13,6 +13,7 @@ namespace WindowsFormsApp1.View
 {
     public partial class AddBookView : Form
     {
+        private bool editMode = false;
         private AddBookController Controller;
 
         public AddBookView(AddBookController controller)
@@ -28,6 +29,7 @@ namespace WindowsFormsApp1.View
 
         public void ShowForm()
         {
+            this.editMode = false;
             Show();
         }
 
@@ -58,7 +60,7 @@ namespace WindowsFormsApp1.View
 
         private void Save_Click(object sender, EventArgs e)
         {
-            if (checkInputFields()) {
+            if (checkInputFields() && !this.editMode) {
                 Controller.save(this.txtAuthor.Text, 
                                 this.txtCondition.Text, 
                                 this.txtDescription.Text, 
@@ -66,22 +68,41 @@ namespace WindowsFormsApp1.View
                                 this.txtISBN.Text, 
                                 this.txtPublisher.Text, 
                                 this.txtTitle.Text);
+            } else {
+                Controller.update(this.txtAuthor.Text,
+                               this.txtCondition.Text,
+                               this.txtDescription.Text,
+                               this.txtInventoryNumber.Text,
+                               this.txtISBN.Text,
+                               this.txtPublisher.Text,
+                               this.txtTitle.Text);
             }
         }
         private bool checkInputFields()
         {
             this.inventory.ForeColor = Color.Black;
             this.iSBN.ForeColor = Color.Black;
-            bool txtInventoryNumberIsParsable = Int32.TryParse(this.txtInventoryNumber.Text, out int n);
-            bool txtISBNIsParsable = Int32.TryParse(this.txtISBN.Text, out int j);
-            if (this.txtInventoryNumber.Text == "" || !txtInventoryNumberIsParsable) this.inventory.ForeColor = Color.Red;
-            if (this.txtISBN.Text == "" || !txtISBNIsParsable) this.iSBN.ForeColor = Color.Red;
+            if (this.txtInventoryNumber.Text == "" ) this.inventory.ForeColor = Color.Red;
+            if (this.txtISBN.Text == "") this.iSBN.ForeColor = Color.Red;
             return this.inventory.ForeColor == Color.Black && this.iSBN.ForeColor == Color.Black; 
         }
 
         private void cancel_Click(object sender, EventArgs e)
         {
             Controller.close();
+        }
+
+        public void updateBook(Books b)
+        {
+            this.editMode = true;
+            this.txtAuthor.Text = b.Author;
+            this.txtCondition.Text = b.Condition;
+            this.txtDescription.Text = b.Desription;
+            this.txtInventoryNumber.Text = b.Inventar_Number;
+            this.txtISBN.Text = b.ISBN;
+            this.txtPublisher.Text = b.Publisher;
+            this.txtTitle.Text = b.Title;
+            Show();
         }
     }
 }

@@ -11,13 +11,13 @@ namespace WindowsFormsApp1.Model
 
         private static LibratorsEntities context = new LibratorsEntities();
 
-        public List<Books> select_Book(string author, string isbn)
+        public static Books select_Book(string inventoryNumber, string isbn)
         {
             var query = from book in context.Books
-                        where book.Author == author && book.ISBN == isbn
+                        where book.Inventar_Number == inventoryNumber && book.ISBN == isbn
                         select book;
 
-            return query.ToList();
+            return query.ToList()[0];
         }
 
         public static void insert_Book(string author, string condition, string description, string inventarnr, string isbn, string publisher, string title)
@@ -36,22 +36,42 @@ namespace WindowsFormsApp1.Model
             context.SaveChanges();
         }
 
-        public void update_Books(string author, string condition, string description, string inventarnr, string isbn, string publisher, string x)
+        public static void update_Book(Books oldBook, Books newBook)
         {
-            Books books = context.Books.Where(u => u.ISBN == isbn).First();
-            books.Author = author;
-            books.Condition = condition;
-            books.Desription = description;
-            books.Inventar_Number = inventarnr;
-            books.ISBN = isbn;
-            books.Publisher = publisher;
-            books.Title = x;
+            Books books = context.Books.Where(u => 
+                oldBook.Inventar_Number == u.Inventar_Number &&
+                oldBook.ISBN == u.ISBN).First();
+            books = newBook;
+            context.SaveChanges();
+        }
+        public static void reserveBook(Reservation res)
+        {
+            Reservations reservation = new Reservations
+            {
+                FK_Inventar_Number = res.Inventar_Number,
+                FK_ISBN = res.ISBN,
+                FK_UserID = res.UserID,
+                ReservationDate = res.ReservationDate,
+                FK_MANumber = res.MANumber,
+            };
+            context.Reservations.Add(reservation);
             context.SaveChanges();
         }
 
-        public void delete_Book(string ISBN)
+        public static int maxReservationId()
         {
-            Books books = context.Books.Where(u => u.ISBN == ISBN).First();
+            var query = from reservation in context.Reservations select reservation.ReservationsID;
+            List<int> ints = query.ToList();
+            if (ints.Count < 0)
+            {
+                return ints.Max();
+            }
+            return 0;
+        }
+
+        public static void delete_Book(string ISBN, string inventoryNumber)
+        {
+            Books books = context.Books.Where(u => u.ISBN == ISBN && u.Inventar_Number == inventoryNumber).First();
             context.Books.Remove(books);
             context.SaveChanges();
         }
