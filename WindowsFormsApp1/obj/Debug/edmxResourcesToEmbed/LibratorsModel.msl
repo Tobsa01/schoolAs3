@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LibratorsModelStoreContainer" CdmEntityContainer="LibratorsEntities">
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="LibratorsModel.Books">
+        <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="Inventar_Number" ColumnName="Inventar_Number" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Desription" ColumnName="Desription" />
+          <ScalarProperty Name="Condition" ColumnName="Condition" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Issues">
+      <EntityTypeMapping TypeName="LibratorsModel.Issues">
+        <MappingFragment StoreEntitySet="Issues">
+          <ScalarProperty Name="IssueID" ColumnName="IssueID" />
+          <ScalarProperty Name="FK_ISBN" ColumnName="FK_ISBN" />
+          <ScalarProperty Name="FK_Inventar_Number" ColumnName="FK_Inventar_Number" />
+          <ScalarProperty Name="FK_UserID" ColumnName="FK_UserID" />
+          <ScalarProperty Name="FK_MANumber" ColumnName="FK_MANumber" />
+          <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="IssueState" ColumnName="IssueState" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservations">
+      <EntityTypeMapping TypeName="LibratorsModel.Reservations">
+        <MappingFragment StoreEntitySet="Reservations">
+          <ScalarProperty Name="ReservationsID" ColumnName="ReservationsID" />
+          <ScalarProperty Name="FK_ISBN" ColumnName="FK_ISBN" />
+          <ScalarProperty Name="FK_Inventar_Number" ColumnName="FK_Inventar_Number" />
+          <ScalarProperty Name="FK_UserID" ColumnName="FK_UserID" />
+          <ScalarProperty Name="FK_MANumber" ColumnName="FK_MANumber" />
+          <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="LibratorsModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="EMailAddress" ColumnName="EMailAddress" />
+          <ScalarProperty Name="MANumber" ColumnName="MANumber" />
+          <ScalarProperty Name="Rolle" ColumnName="Rolle" />
+          <ScalarProperty Name="EncryptedPW" ColumnName="EncryptedPW" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
