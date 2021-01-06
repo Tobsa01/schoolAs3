@@ -45,6 +45,7 @@ namespace WindowsFormsApp1.Controller
             View.ShowForm();
         }
 
+
         internal void User()
         {
             HideForm();

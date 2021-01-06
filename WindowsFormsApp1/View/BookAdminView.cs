@@ -25,9 +25,10 @@ namespace WindowsFormsApp1.View
         }
 
        
-        public void HideForm()
+        public void HideForm()   
         {
             Hide();
+           
         }
 
         public void ShowForm()
