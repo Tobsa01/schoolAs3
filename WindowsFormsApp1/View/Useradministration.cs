@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
     {
         private UserController Controller { get; }
 
-        private WindowsFormsApp1.Model.UserModel Model { get; }
+        private UserModel Model { get; }
 
         private BindingSource bindingSource1 = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();

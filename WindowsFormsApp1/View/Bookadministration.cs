@@ -49,13 +49,8 @@ namespace WindowsFormsApp1
                 String connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
                 dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
-                DataTable table = new DataTable
-                {
-                    Locale = System.Globalization.CultureInfo.InvariantCulture
-                };
-               
-
-
+                dataAdapter.Fill(table);
+                bindingSource1.DataSource = table;
                 // Add additional column for filtering 
                 if (first_load)
                 {
@@ -74,8 +69,7 @@ namespace WindowsFormsApp1
                     first_load = false;
                 }
 
-                dataAdapter.Fill(table);
-                bindingSource1.DataSource = table;
+                
                 // Hide filter string column
                 dataGridView1.Columns["_RowString"].Visible = false;
 

@@ -18,7 +18,8 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-
+            // UserModel.insert_User("Tro", "ttt", "t@t", 1567, "adm", "test");
+            //UserModel.insert_User("den", "san", "s@s", 1345, "usr", "tset");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Library_Admin());

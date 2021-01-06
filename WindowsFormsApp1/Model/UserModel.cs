@@ -4,7 +4,7 @@ using System.Text;
 using System.Linq;
 using System.Security.Cryptography;
 
-namespace WindowsFormsApp1.Model
+namespace WindowsFormsApp1
 {
     public class UserModel
     {
