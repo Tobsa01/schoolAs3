@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
         private WindowsFormsApp1.Model.BookAdminModel Model { get; }
         private BindingSource bindingSource1 = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
-        DataTable table = new DataTable {Locale = System.Globalization.CultureInfo.InvariantCulture};
+        DataTable table = new DataTable { Locale = System.Globalization.CultureInfo.InvariantCulture };
         private bool first_load = true;
 
         public Bookadministration(BookController controller)
@@ -53,8 +53,7 @@ namespace WindowsFormsApp1
                 {
                     Locale = System.Globalization.CultureInfo.InvariantCulture
                 };
-                dataAdapter.Fill(table);
-                bindingSource1.DataSource = table;
+               
 
 
                 // Add additional column for filtering 
@@ -75,8 +74,11 @@ namespace WindowsFormsApp1
                     first_load = false;
                 }
 
+                dataAdapter.Fill(table);
+                bindingSource1.DataSource = table;
                 // Hide filter string column
                 dataGridView1.Columns["_RowString"].Visible = false;
+
 
                 // Resize the DataGridView columns to fit the newly loaded content.
 
@@ -118,7 +120,7 @@ namespace WindowsFormsApp1
             String inv = row.Cells[0].Value.ToString();
 
             GetData("INSERT INTO Reservations (FK_ISBN, FK_Inventar_Number, FK_UserID, FK_MANumber, ReservationDate) " +
-                "Values ((SELECT ISBN FROM Books Where Inventar_Number= '"+ inv +"'), '"+ inv +
+                "Values ((SELECT ISBN FROM Books Where Inventar_Number= '" + inv + "'), '" + inv +
                 "', 1, 1234, CURRENT_TIMESTAMP)");
 
             dataAdapter.Update((DataTable)bindingSource1.DataSource);
@@ -135,10 +137,14 @@ namespace WindowsFormsApp1
         {
             Controller.Back();
 
+        }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
+            if (textBox1.Text.Length > 0)
+            {
+                table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
+            }
 
         }
-    }
+    } 
 }
