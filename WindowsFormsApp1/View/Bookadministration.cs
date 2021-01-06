@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-
+                table.Clear();
                 String connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
                 dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
@@ -139,6 +139,16 @@ namespace WindowsFormsApp1
                 table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
             }
 
+        }
+        public void RefreshData()
+        {
+            dataGridView1.DataSource = bindingSource1;
+            GetData("select * from Books");
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Controller.Add();
         }
     } 
 }

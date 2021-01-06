@@ -144,11 +144,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
+    <Compile Include="Controller\AddBookController.cs" />
     <Compile Include="Controller\AddUserController.cs" />
     <Compile Include="Controller\BookAdminController.cs" />
     <Compile Include="Controller\BookController.cs" />
     <Compile Include="Model\BookAdminModel.cs" />
     <Compile Include="Model\CurrentUser.cs" />
+    <Compile Include="View\AddBookView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddBookView.Designer.cs">
+      <DependentUpon>AddBookView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\AddUserView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +256,9 @@
     <Compile Include="View\UserView.Designer.cs">
       <DependentUpon>UserView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\AddBookView.resx">
+      <DependentUpon>AddBookView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AddUserView.resx">
       <DependentUpon>AddUserView.cs</DependentUpon>
     </EmbeddedResource>
