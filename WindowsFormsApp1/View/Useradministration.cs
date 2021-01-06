@@ -17,7 +17,14 @@ namespace WindowsFormsApp1
     public partial class Useradministration : Form
     {
         private UserController Controller { get; }
+
         private WindowsFormsApp1.Model.UserModel Model { get; }
+
+        private BindingSource bindingSource1 = new BindingSource();
+        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
+        DataTable table = new DataTable {Locale = System.Globalization.CultureInfo.InvariantCulture};
+        private bool first_load = true;
+
 
         public Useradministration(UserController controller)
         {
@@ -36,12 +43,12 @@ namespace WindowsFormsApp1
             Show();
         }
 
-        private BindingSource bindingSource1 = new BindingSource();
-        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
+
         private void GetData(string selectCommand)
         {
             try
             {
+
               
                 String connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
               
@@ -53,6 +60,31 @@ namespace WindowsFormsApp1
                 };
                 dataAdapter.Fill(table);
                 bindingSource1.DataSource = table;
+
+
+                // Add additional column for filtering 
+                if (first_load) 
+                { 
+                    DataColumn dcRowString = table.Columns.Add("_RowString", typeof(string)); //System.Data.DuplicateNameException
+                   // build filter string
+                    foreach (DataRow dataRow in table.Rows)
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < table.Columns.Count - 1; i++)
+                        {
+                            sb.Append(dataRow[i].ToString());
+                            sb.Append("\t");
+                        }
+                        dataRow[dcRowString] = sb.ToString();
+                    }
+                    first_load = false;
+                }
+
+                // Hide filter string column
+                dataGridView1.Columns["_RowString"].Visible = false;
+
+                // Resize the DataGridView columns to fit the newly loaded content
+
                 dataGridView1.AutoResizeColumns(
                     DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
             }
@@ -64,8 +96,7 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Bind the DataGridView to the BindingSource
-            // and load the data from the database.
+            // Bind the DataGridView to the BindingSource and load the data from the database
             dataGridView1.DataSource = bindingSource1;
             GetData("select * from Users");
         }
@@ -93,6 +124,12 @@ namespace WindowsFormsApp1
 
                 Controller.Add();
             
+        }
+
+        // Filter triggern
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
         }
     }
 }
