@@ -24,7 +24,8 @@ namespace WindowsFormsApp1
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         DataTable table = new DataTable {Locale = System.Globalization.CultureInfo.InvariantCulture};
         private bool first_load = true;
-
+        private int positionDelete;
+        private int positionUpdate;
 
         public Useradministration(UserController controller)
         {
@@ -75,7 +76,8 @@ namespace WindowsFormsApp1
 
                 // Hide filter string column
                 dataGridView1.Columns["_RowString"].Visible = false;
-
+                addButton("Bearbeiten", ref positionUpdate);
+                addButton("Löschen", ref positionDelete);
                 // Resize the DataGridView columns to fit the newly loaded content
 
                 dataGridView1.AutoResizeColumns(
@@ -87,7 +89,32 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void addButton(string buttonName, ref int place)
+        {
+            DataGridViewButtonColumn button = new DataGridViewButtonColumn();
+            button.Name = buttonName;
+            button.Text = buttonName;
+            if (dataGridView1.Columns[buttonName] == null)
+            {
+                dataGridView1.Columns.Add(button);
+                place = dataGridView1.Columns.Count - 1;
+            }
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView1.DataSource = bindingSource1;
+            int userId = Int32.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+            if (e.ColumnIndex == positionDelete)
+            {
+                Controller.Delete(userId);
+            }
+            if (e.ColumnIndex == positionUpdate)
+            {
+                Controller.Update(userId);
+            }
+        }
+
+            private void Form1_Load(object sender, EventArgs e)
         {
             // Bind the DataGridView to the BindingSource and load the data from the database
             dataGridView1.DataSource = bindingSource1;

@@ -216,7 +216,6 @@
             this.Controls.Add(this.iSBN);
             this.Name = "AddBookView";
             this.Text = "AddBookView";
-            this.Load += new System.EventHandler(this.AddBookView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
