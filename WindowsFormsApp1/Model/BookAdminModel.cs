@@ -78,15 +78,24 @@ namespace WindowsFormsApp1.Model
         {
             try
             {
-                Books books = context.Books.Where(u => u.ISBN == ISBN && u.Inventar_Number == inventoryNumber).First();
+               
                 if ((context.Reservations.Any(u => u.FK_ISBN == ISBN && u.FK_Inventar_Number == inventoryNumber)))
                 {
-                    context.Reservations.Remove(context.Reservations.Where(u => u.FK_ISBN == ISBN && u.FK_Inventar_Number == inventoryNumber).First());
+                    List<Reservations> ls = context.Reservations.Where(u => u.FK_ISBN == ISBN && u.FK_Inventar_Number == inventoryNumber).ToList();
+                    foreach (var l in ls) {
+                        context.Reservations.Remove(l);
+                    }
                 }
                 if ((context.Issues.Any(u => u.FK_ISBN == ISBN && u.FK_Inventar_Number == inventoryNumber)))
                 {
-                    context.Issues.Remove(context.Issues.Where(u => u.FK_ISBN == ISBN && u.FK_Inventar_Number == inventoryNumber).First());
+                    List<Issues> ls = context.Issues.Where(u => u.FK_ISBN == ISBN && u.FK_Inventar_Number == inventoryNumber).ToList();
+                    foreach (var l in ls)
+                    {
+                        context.Issues.Remove(l);
+                    }
                 }
+                context.SaveChanges();
+                Books books = context.Books.Where(u => u.ISBN == ISBN && u.Inventar_Number == inventoryNumber).First();
                 context.Books.Remove(books);
                 context.SaveChanges();
             }catch (Exception e)

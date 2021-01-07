@@ -112,10 +112,9 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = bindingSource1;
-            GetData("select * from Issues;", dataGridView1, bindingSource1);
-            // dataGridView2.DataSource = bindingSource2;
-            // GetData("select * from Reservations;", dataGridView2, bindingSource2);
+           dataGridView1.DataSource = bindingSource1;
+           GetData("select * from Issues;", dataGridView1, bindingSource1);
+         
         }
 
         private void Search_txb_TextChanged(object sender, EventArgs e)
