@@ -25,6 +25,8 @@ namespace WindowsFormsApp1
         private int positionDelete;
         private int positionReserve;
         private int positionIssue;
+        private int positionReturn;
+
         private int positionUpdate;
 
         public Bookadministration(BookController controller)
@@ -76,9 +78,11 @@ namespace WindowsFormsApp1
                 
                 // Hide filter string column
                 dataGridView1.Columns["_RowString"].Visible = false;
+                
                 addButton("Löschen", ref positionDelete);
                 addButton("Reservieren", ref positionReserve);
                 addButton("Ausleihe", ref positionIssue);
+                addButton("Rückgabe", ref positionReturn);
                 addButton("Bearbeiten", ref positionUpdate);
 
                 // Resize the DataGridView columns to fit the newly loaded content.
@@ -141,6 +145,10 @@ namespace WindowsFormsApp1
             if (e.ColumnIndex == positionIssue)
             {
                 Controller.LendBook(iSBN, inventoryNumber);
+            }
+            if (e.ColumnIndex == positionReturn)
+            {
+                Controller.ReturnBook(iSBN, inventoryNumber);
             }
             if (e.ColumnIndex == positionUpdate)
             {

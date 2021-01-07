@@ -100,7 +100,7 @@ namespace WindowsFormsApp1
 
                 bs.DataSource = table;
                 dgv.Columns["_RowString"].Visible = false;
-
+                dgv.Columns["IssueID"].Visible = false;
                 dgv.AutoResizeColumns(
                     DataGridViewAutoSizeColumnsMode.AllCells);
             }
@@ -112,7 +112,8 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           dataGridView1.DataSource = bindingSource1;
+           
+            dataGridView1.DataSource = bindingSource1;
            GetData("select * from Issues;", dataGridView1, bindingSource1);
          
         }

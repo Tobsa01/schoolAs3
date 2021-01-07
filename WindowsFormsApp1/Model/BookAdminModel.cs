@@ -9,7 +9,6 @@ namespace WindowsFormsApp1.Model
 {
     public class BookAdminModel
     {
-
         private static LibratorsEntities context = new LibratorsEntities();
 
         public static Books select_Book(string inventoryNumber, string isbn)
@@ -92,11 +91,42 @@ namespace WindowsFormsApp1.Model
             return 0;
         }
 
+        internal static void returnBook(Reservation res)
+        {
+            try
+            {
+                int id = CurrentUser.getUserId();
+                if ((context.Issues.Any(u => u.FK_ISBN == res.ISBN && u.FK_Inventar_Number == res.Inventar_Number && u.FK_UserID == id)))
+                {
+                    Issues i = context.Issues.Where(u => u.FK_ISBN == res.ISBN && u.FK_Inventar_Number == res.Inventar_Number).First();
+                    Issues issue = new Issues
+                    {
+                        FK_Inventar_Number = res.Inventar_Number,
+                        FK_ISBN = res.ISBN,
+                        FK_UserID = res.UserID,
+                        IssueState = "ret",
+                        StartDate = i.StartDate,
+                        ReturnDate = res.ReservationDate,
+                        FK_MANumber = res.MANumber,
+                    };
+                    context.Issues.Remove(i);
+                    context.SaveChanges();
+                    context.Issues.Add(issue);
+                    context.SaveChanges();
+                }
+
+                
+            }
+            catch (Exception e)
+            {
+                ErrorWindow.ShowCustomErrorWindow(e.Message + e.InnerException, "Fehler", MessageBoxIcon.Error, MessageBoxButtons.OK);
+            }
+        }
+
         public static void delete_Book(string ISBN, string inventoryNumber)
         {
             try
             {
-               
                 if ((context.Reservations.Any(u => u.FK_ISBN == ISBN && u.FK_Inventar_Number == inventoryNumber)))
                 {
                     List<Reservations> ls = context.Reservations.Where(u => u.FK_ISBN == ISBN && u.FK_Inventar_Number == inventoryNumber).ToList();

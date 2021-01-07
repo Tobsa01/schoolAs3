@@ -32,7 +32,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.username_tbox = new System.Windows.Forms.TextBox();
             this.password_tbox = new System.Windows.Forms.TextBox();
-            this.register_linkLabel = new System.Windows.Forms.LinkLabel();
             this.logInBtn = new System.Windows.Forms.Button();
             this.error_label = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -52,34 +51,23 @@
             // 
             // username_tbox
             // 
-            this.username_tbox.Location = new System.Drawing.Point(71, 185);
+            this.username_tbox.Location = new System.Drawing.Point(125, 185);
             this.username_tbox.Name = "username_tbox";
             this.username_tbox.Size = new System.Drawing.Size(191, 20);
             this.username_tbox.TabIndex = 1;
             // 
             // password_tbox
             // 
-            this.password_tbox.Location = new System.Drawing.Point(71, 211);
+            this.password_tbox.Location = new System.Drawing.Point(125, 211);
             this.password_tbox.Name = "password_tbox";
             this.password_tbox.PasswordChar = '*';
             this.password_tbox.Size = new System.Drawing.Size(191, 20);
             this.password_tbox.TabIndex = 2;
             this.password_tbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.password_tbox_KeyDown);
             // 
-            // register_linkLabel
-            // 
-            this.register_linkLabel.AutoSize = true;
-            this.register_linkLabel.Location = new System.Drawing.Point(71, 237);
-            this.register_linkLabel.Name = "register_linkLabel";
-            this.register_linkLabel.Size = new System.Drawing.Size(63, 13);
-            this.register_linkLabel.TabIndex = 4;
-            this.register_linkLabel.TabStop = true;
-            this.register_linkLabel.Text = "Registrieren";
-            this.register_linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.register_linkLabel_LinkClicked);
-            // 
             // logInBtn
             // 
-            this.logInBtn.Location = new System.Drawing.Point(197, 237);
+            this.logInBtn.Location = new System.Drawing.Point(252, 237);
             this.logInBtn.Name = "logInBtn";
             this.logInBtn.Size = new System.Drawing.Size(64, 20);
             this.logInBtn.TabIndex = 3;
@@ -116,7 +104,6 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.error_label);
             this.Controls.Add(this.logInBtn);
-            this.Controls.Add(this.register_linkLabel);
             this.Controls.Add(this.password_tbox);
             this.Controls.Add(this.username_tbox);
             this.Controls.Add(this.pictureBox1);
@@ -136,7 +123,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox username_tbox;
         private System.Windows.Forms.TextBox password_tbox;
-        private System.Windows.Forms.LinkLabel register_linkLabel;
         private System.Windows.Forms.Button logInBtn;
         private System.Windows.Forms.Label error_label;
         private System.Windows.Forms.PictureBox pictureBox2;
