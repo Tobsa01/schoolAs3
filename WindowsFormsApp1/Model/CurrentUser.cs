@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class CurrentUser : Users
+    public class CurrentUser : Users
     {
         private static Users instance = null;
         private CurrentUser() { }

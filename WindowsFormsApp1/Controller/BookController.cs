@@ -69,5 +69,12 @@ namespace WindowsFormsApp1.Controller
             var bcontroller = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.AddBookController>();
             bcontroller.updateBook(b);
         }
+
+        public void LendBook(string iSBN, string inventoryNumber)
+        {
+            int id = BookAdminModel.maxReservationId();
+            Reservation res = new Reservation(id, iSBN, inventoryNumber, CurrentUser.getUserId(), CurrentUser.getMANumber());
+            BookAdminModel.lendBook(res);
+        }
     }
 }

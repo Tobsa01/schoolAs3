@@ -107,15 +107,25 @@ namespace WindowsFormsApp1
 
         public static void delete_User(int id)
         {
-            Users user = context.Users.Where(u => u.UserID == id).First();
-            if ((context.Reservations.Any(u => u.FK_UserID == id)))
+            if ((context.Reservations.Any(u => u.FK_UserID==id)))
             {
-                context.Reservations.Remove(context.Reservations.Where(u => u.FK_UserID == id).First());
+                List<Reservations> ls = context.Reservations.Where(u => u.FK_UserID == id).ToList();
+                foreach (var l in ls)
+                {
+                    context.Reservations.Remove(l);
+                }
             }
             if ((context.Issues.Any(u => u.FK_UserID == id)))
             {
-                context.Issues.Remove(context.Issues.Where(u => u.FK_UserID == id).First());
+                List<Issues> ls = context.Issues.Where(u => u.FK_UserID == id).ToList();
+                foreach (var l in ls)
+                {
+                    context.Issues.Remove(l);
+                }
             }
+            context.SaveChanges();
+            Users user = context.Users.Where(u => u.UserID == id).First();
+            
             context.Users.Remove(user);
             context.SaveChanges();
         }
