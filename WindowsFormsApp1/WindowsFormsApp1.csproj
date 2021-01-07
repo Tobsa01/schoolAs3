@@ -150,6 +150,7 @@
     <Compile Include="Controller\BookController.cs" />
     <Compile Include="Model\BookAdminModel.cs" />
     <Compile Include="Model\CurrentUser.cs" />
+    <Compile Include="Model\ErrorWindow.cs" />
     <Compile Include="Reservation.cs" />
     <Compile Include="View\AddBookView.cs">
       <SubType>Form</SubType>
