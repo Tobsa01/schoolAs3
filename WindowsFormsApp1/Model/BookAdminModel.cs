@@ -41,7 +41,11 @@ namespace WindowsFormsApp1.Model
             Books books = context.Books.Where(u => 
                 oldBook.Inventar_Number == u.Inventar_Number &&
                 oldBook.ISBN == u.ISBN).First();
-            books = newBook;
+            books.Author = newBook.Author;
+            books.Condition = newBook.Condition;
+            books.Desription = newBook.Desription;
+            books.Publisher = newBook.Publisher;
+            books.Title = newBook.Title;
             context.SaveChanges();
         }
         public static void reserveBook(Reservation res)

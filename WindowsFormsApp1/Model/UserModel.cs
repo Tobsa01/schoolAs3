@@ -72,6 +72,11 @@ namespace WindowsFormsApp1
             return res;
         }
 
+        public static Users selectUserWithId(int userId)
+        {
+            Users user = context.Users.Where(u => userId == u.UserID).First();
+            return user;
+        }
         public static void insert_User(string lastName, string firstName, string email, int MANumber, string role, string password)
         {
             Users user = new Users();
@@ -85,21 +90,24 @@ namespace WindowsFormsApp1
             context.SaveChanges();
         }
 
-        public static void update_User(string lastName, string firstName, string email, int MANumber, string role, string password)
+        public static void update_User(Users oldUser, Users newUser)
         {
-            Users user = context.Users.Where(u => u.MANumber == MANumber).First();
-            user.LastName = lastName;
-            user.FirstName = firstName;
-            user.EMailAddress = email;
-            user.MANumber = MANumber;
-            user.Rolle = role;
-            user.EncryptedPW = password;
+            Users user = context.Users.Where(u => oldUser.UserID == u.UserID).First();
+            user.EMailAddress = newUser.EMailAddress;
+            user.LastName = newUser.LastName;
+            user.FirstName = newUser.FirstName;
+            user.MANumber = newUser.MANumber;
+            user.Rolle = newUser.Rolle;
+            if (newUser.EncryptedPW != user.EncryptedPW)
+            {
+                user.EncryptedPW = passwordGenerator(newUser.EncryptedPW);
+            }
             context.SaveChanges();
         }
 
-        public void delete_User(int MANumber)
+        public static void delete_User(int id)
         {
-            Users user = context.Users.Where(u => u.MANumber == MANumber).First();
+            Users user = context.Users.Where(u => u.UserID == id).First();
             context.Users.Remove(user);
             context.SaveChanges();
         }

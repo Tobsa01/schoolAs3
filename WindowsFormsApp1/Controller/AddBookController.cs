@@ -49,9 +49,7 @@ namespace WindowsFormsApp1.Controller
                 Title = title
             };
             BookAdminModel.update_Book(oldBook, newBook);
-            View.HideForm();
-            var bookView = ControllerManager.Get<BookController>();
-            bookView.RefreshData();
+            close();
         }
     }
 }

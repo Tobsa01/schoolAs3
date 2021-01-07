@@ -13,24 +13,44 @@ namespace WindowsFormsApp1.View
 {
     public partial class AddBookView : Form
     {
-        private bool editMode = false;
+        private static bool editMode;
         private AddBookController Controller;
 
         public AddBookView(AddBookController controller)
         {
+            editMode = false;
             Visible = false;
             InitializeComponent();
             Controller = controller;
+            this.FormClosing += new FormClosingEventHandler(Form_Closing);
         }
         public void HideForm()
         {
+            this.txtISBN.ReadOnly = false;
+            this.txtInventoryNumber.ReadOnly = false;
+            this.txtISBN.BackColor = Color.White;
+            this.txtInventoryNumber.BackColor = Color.White;
+            this.inventory.ForeColor = Color.Black;
+            this.iSBN.ForeColor = Color.Black;
             Hide();
         }
 
         public void ShowForm()
         {
-            this.editMode = false;
+            this.txtAuthor.Text = "";
+            this.txtCondition.Text = "";
+            this.txtDescription.Text = "";
+            this.txtInventoryNumber.Text = "";
+            this.txtISBN.Text = "";
+            this.txtPublisher.Text = "";
+            this.txtTitle.Text = "";
+            editMode = false;
             Show();
+        }
+        private void Form_Closing(Object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            HideForm();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -48,11 +68,6 @@ namespace WindowsFormsApp1.View
 
         }
 
-        private void AddBookView_Load(object sender, EventArgs e)
-        {
-            InitializeComponent();
-        }
-
         private void label6_Click(object sender, EventArgs e)
         {
 
@@ -60,7 +75,7 @@ namespace WindowsFormsApp1.View
 
         private void Save_Click(object sender, EventArgs e)
         {
-            if (checkInputFields() && !this.editMode) {
+            if (checkInputFields() && editMode == false) {
                 Controller.save(this.txtAuthor.Text, 
                                 this.txtCondition.Text, 
                                 this.txtDescription.Text, 
@@ -68,7 +83,7 @@ namespace WindowsFormsApp1.View
                                 this.txtISBN.Text, 
                                 this.txtPublisher.Text, 
                                 this.txtTitle.Text);
-            } else {
+            } else if(editMode) {
                 Controller.update(this.txtAuthor.Text,
                                this.txtCondition.Text,
                                this.txtDescription.Text,
@@ -84,7 +99,7 @@ namespace WindowsFormsApp1.View
             this.iSBN.ForeColor = Color.Black;
             if (this.txtInventoryNumber.Text == "" ) this.inventory.ForeColor = Color.Red;
             if (this.txtISBN.Text == "") this.iSBN.ForeColor = Color.Red;
-            return this.inventory.ForeColor == Color.Black && this.iSBN.ForeColor == Color.Black; 
+            return this.txtISBN.Text != "" && this.txtInventoryNumber.Text != ""; 
         }
 
         private void cancel_Click(object sender, EventArgs e)
@@ -94,7 +109,7 @@ namespace WindowsFormsApp1.View
 
         public void updateBook(Books b)
         {
-            this.editMode = true;
+            editMode = true;
             this.txtAuthor.Text = b.Author;
             this.txtCondition.Text = b.Condition;
             this.txtDescription.Text = b.Desription;
@@ -102,6 +117,10 @@ namespace WindowsFormsApp1.View
             this.txtISBN.Text = b.ISBN;
             this.txtPublisher.Text = b.Publisher;
             this.txtTitle.Text = b.Title;
+            this.txtISBN.ReadOnly = true;
+            this.txtInventoryNumber.ReadOnly = true;
+            this.txtISBN.BackColor = Color.Gray;
+            this.txtInventoryNumber.BackColor = Color.Gray;
             Show();
         }
     }

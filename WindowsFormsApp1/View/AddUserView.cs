@@ -14,15 +14,30 @@ namespace WindowsFormsApp1.View
     public partial class AddUserView : Form
     {
         private AddUserController Controller;
-
+        private static bool editMode = false;
         public AddUserView(AddUserController controller)
         {
             Visible = false;
             InitializeComponent();
             Controller = controller;
+            this.FormClosing += new FormClosingEventHandler(Form_Closing);
         }
         public void HideForm()
         {
+            editMode = false;
+            this.eMailAdress.ForeColor = default(Color);
+            this.firstName.ForeColor = default(Color);
+            this.lastName.ForeColor = default(Color);
+            this.MANumber.ForeColor = default(Color);
+            this.txtMANumber.BackColor = default(Color); 
+            this.password.ForeColor = default(Color); 
+            this.txtMANumber.ReadOnly = false;
+            this.MANumber.BackColor = default(Color);
+            this.txtEmailAdress.Text = "";
+            this.txtFirstName.Text = "";
+            this.txtLastname.Text = "";
+            this.txtMANumber.Text = "";
+            this.txtPassword.Text = "";
             Hide();
         }
 
@@ -48,10 +63,25 @@ namespace WindowsFormsApp1.View
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (checkInputFields())
+            if (checkInputFields() && !editMode)
             {
                 Controller.save(this.txtLastname.Text, this.txtFirstName.Text, this.txtEmailAdress.Text, Int32.Parse(this.txtMANumber.Text), this.chIsAdmin.Checked, this.txtPassword.Text);
+            } else if (checkInputFields() && editMode) {
+                Controller.Update(this.txtLastname.Text, this.txtFirstName.Text, this.txtEmailAdress.Text, Int32.Parse(this.txtMANumber.Text), this.chIsAdmin.Checked, this.txtPassword.Text);
             }
+        }
+        public void UpdateUser(Users user)
+        {
+            editMode = true;
+            this.txtEmailAdress.Text = user.EMailAddress;
+            this.txtFirstName.Text = user.FirstName;
+            this.txtLastname.Text = user.LastName;
+            this.txtMANumber.Text = user.MANumber.ToString();
+            this.txtMANumber.ReadOnly = true;
+            this.txtMANumber.BackColor = Color.Gray;
+            this.txtPassword.Text = user.EncryptedPW;
+            this.chIsAdmin.Checked = user.Rolle == "adm";
+            Show();
         }
         private bool checkInputFields()
         {
@@ -72,6 +102,11 @@ namespace WindowsFormsApp1.View
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Controller.close();
+        }
+        private void Form_Closing(Object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            HideForm();
         }
     }
 }

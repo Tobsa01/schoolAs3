@@ -54,5 +54,15 @@ namespace WindowsFormsApp1.Controller
         {
             View.RefreshData();
         }
+        public void Delete(int id)
+        {
+            UserModel.delete_User(id);
+            View.RefreshData();
+        }
+        public void Update(int userId) {
+            Users user = UserModel.selectUserWithId(userId);
+            var userController = ControllerManager.Get<AddUserController>();
+            userController.ShowUpdate(user);
+        }
     }
 }
