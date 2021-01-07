@@ -30,11 +30,16 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+<<<<<<< HEAD
             this.label1 = new System.Windows.Forms.Label();
+=======
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+>>>>>>> Bug Fixing Bookadministration
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,6 +52,7 @@ namespace WindowsFormsApp1
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Suche";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.Click += new System.EventHandler(this.textBox1_Clicked);
             // 
             // dataGridView1
             // 
@@ -63,6 +69,19 @@ namespace WindowsFormsApp1
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
+<<<<<<< HEAD
+=======
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(10, 83);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(56, 19);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Suche";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+>>>>>>> Bug Fixing Bookadministration
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(13, 155);
@@ -85,6 +104,7 @@ namespace WindowsFormsApp1
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+<<<<<<< HEAD
             // label1
             // 
             this.label1.AutoSize = true;
@@ -94,6 +114,13 @@ namespace WindowsFormsApp1
             this.label1.Size = new System.Drawing.Size(111, 32);
             this.label1.TabIndex = 14;
             this.label1.Text = "Bücher";
+=======
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStrip1.Text = "Suche";
+>>>>>>> Bug Fixing Bookadministration
             // 
             // Bookadministration
             // 
@@ -108,7 +135,7 @@ namespace WindowsFormsApp1
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Bookadministration";
             this.Text = "Bücherverwaltung";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            //this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -124,5 +151,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

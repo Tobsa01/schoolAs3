@@ -21,11 +21,8 @@ namespace WindowsFormsApp1
         private BindingSource bindingSource1 = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         DataTable table = new DataTable { Locale = System.Globalization.CultureInfo.InvariantCulture };
-        private bool first_load = true;
-        private int positionDelete;
-        private int positionReserve;
-        private int positionIssue;
-        private int positionUpdate;
+        private static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
+
 
         public Bookadministration(BookController controller)
         {
@@ -33,6 +30,10 @@ namespace WindowsFormsApp1
             InitializeComponent();
             Controller = controller;
             Model = Controller.Model;
+            bindingSource1.DataSource = table;
+            dataGridView1.DataSource = bindingSource1;
+            createTable();
+            GetData("select * from Books");
         }
         public void HideForm()
         {
@@ -43,58 +44,47 @@ namespace WindowsFormsApp1
         {
             Show();
         }
-
-
+        private void createTable()
+        {
+            dataAdapter = new SqlDataAdapter("select * from Books", connectionString);
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            dataAdapter.Fill(table);
+            addButton("Löschen");
+            addButton("Reservieren");
+            addButton("Ausleihe");
+            addButton("Bearbeiten");
+            table.Columns.Add("_RowString", typeof(string));
+            dataGridView1.Columns["_RowString"].Visible = false;
+        }
         private void GetData(string selectCommand)
         {
             try
             {
                 table.Clear();
-                String connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
                 dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
                 dataAdapter.Fill(table);
-                bindingSource1.DataSource = table;
-                // Add additional column for filtering 
-                if (first_load)
+                foreach (DataRow dataRow in table.Rows)
                 {
-                    DataColumn dcRowString = table.Columns.Add("_RowString", typeof(string));
-                    // build filter string
-                    foreach (DataRow dataRow in table.Rows)
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < table.Columns.Count - 1; i++)
                     {
-                        StringBuilder sb = new StringBuilder();
-                        for (int i = 0; i < table.Columns.Count - 1; i++)
-                        {
-                            sb.Append(dataRow[i].ToString());
-                            sb.Append("\t");
-                        }
-                        dataRow[dcRowString] = sb.ToString();
+                        sb.Append(dataRow[i].ToString());
+                        sb.Append("\t");
                     }
-                    first_load = false;
+                    dataRow["_RowString"] = sb.ToString();
                 }
-
-                
-                // Hide filter string column
-                dataGridView1.Columns["_RowString"].Visible = false;
-                addButton("Löschen", ref positionDelete);
-                addButton("Reservieren", ref positionReserve);
-                addButton("Ausleihe", ref positionIssue);
-                addButton("Bearbeiten", ref positionUpdate);
-
-                // Resize the DataGridView columns to fit the newly loaded content.
-
-                dataGridView1.AutoResizeColumns(
-                    DataGridViewAutoSizeColumnsMode.AllCells);
+               
+                dataGridView1.DataSource = bindingSource1;
+                dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                 dataAdapter.Update((DataTable)bindingSource1.DataSource);
-                // dataGridView1.CellClick += dataGridView1_CellClick;
-
             }
             catch (SqlException sql)
             {
                 MessageBox.Show("Keine Einträge vorhanden! " + sql.Message);
             }
         }
-        private void addButton(string buttonName, ref int place)
+        private void addButton(string buttonName)
         {
             DataGridViewButtonColumn button = new DataGridViewButtonColumn();
             button.Name = buttonName;
@@ -102,70 +92,62 @@ namespace WindowsFormsApp1
             if (dataGridView1.Columns[buttonName] == null)
             {
                 dataGridView1.Columns.Add(button);
-                place = dataGridView1.Columns.Count - 1;
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             dataGridView1.DataSource = bindingSource1;
             GetData("select * from Books");
         }
-        private void SucheBuch()
+        private int HeaderPosition(string value)
         {
-            dataGridView1.DataSource = bindingSource1;
-            String text = "SELECT * FROM Books Where Author LIKE '%" + textBox1.Text + "%'  OR ISBN ='" + textBox1.Text + "' OR  Title LIKE '%" + textBox1.Text + "%'";
-            GetData(text);
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            SucheBuch();
+            return dataGridView1.Columns[value].Index;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView1.DataSource = bindingSource1;
-            string inventoryNumber = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            string iSBN = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            if (e.ColumnIndex == positionDelete)
+            string inventoryNumber = dataGridView1.Rows[e.RowIndex].Cells[HeaderPosition("Inventar_Number")].Value.ToString();
+            string iSBN = dataGridView1.Rows[e.RowIndex].Cells[HeaderPosition("ISBN")].Value.ToString();
+            if (e.ColumnIndex == dataGridView1.Columns["Löschen"].Index)
             {
                 Controller.Delete(iSBN, inventoryNumber);
             }
-            if (e.ColumnIndex == positionReserve)
+            if (e.ColumnIndex == dataGridView1.Columns["Reservieren"].Index)
             {
                 Controller.ReserveBook(iSBN, inventoryNumber);
             }
-            if (e.ColumnIndex == positionIssue)
-            {
-                Controller.LendBook(iSBN, inventoryNumber);
-            }
-            if (e.ColumnIndex == positionUpdate)
+            if (e.ColumnIndex == dataGridView1.Columns["Bearbeiten"].Index)
             {
                 Controller.ShowBookInformation(iSBN, inventoryNumber);
             }
-             
+             if (e.ColumnIndex == dataGridView1.Columns["Ausleihe"].Index)
+            {
+                Controller.ShowBookInformation(iSBN, inventoryNumber);
             }
+            RefreshData();
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Controller.Back();
-
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text.Length > 0)
-            {
-                table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
-            }
-
+            GetData("select * from Books");
+            if (textBox1.Text != "Suche") table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
+            dataAdapter.Update((DataTable)bindingSource1.DataSource);
+        }
+        private void textBox1_Clicked(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "Suche") textBox1.Text = "";
         }
         public void RefreshData()
         {
             dataGridView1.DataSource = bindingSource1;
             GetData("select * from Books");
+            if(textBox1.Text != "Suche") table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
