@@ -76,12 +76,13 @@ namespace WindowsFormsApp1
 
                 // Hide filter string column
                 dataGridView1.Columns["_RowString"].Visible = false;
+                dataGridView1.Columns["EncryptedPW"].Visible = false;
                 addButton("Bearbeiten", ref positionUpdate);
                 addButton("Löschen", ref positionDelete);
                 // Resize the DataGridView columns to fit the newly loaded content
-
                 dataGridView1.AutoResizeColumns(
-                    DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+                    DataGridViewAutoSizeColumnsMode.AllCells);
+                dataAdapter.Update((DataTable)bindingSource1.DataSource);
             }
             catch (SqlException)
             {

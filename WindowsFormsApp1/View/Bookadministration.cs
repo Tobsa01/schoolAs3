@@ -80,7 +80,6 @@ namespace WindowsFormsApp1
                 addButton("Bearbeiten", ref positionUpdate);
 
                 // Resize the DataGridView columns to fit the newly loaded content.
-
                 dataGridView1.AutoResizeColumns(
                     DataGridViewAutoSizeColumnsMode.AllCells);
                 dataAdapter.Update((DataTable)bindingSource1.DataSource);
