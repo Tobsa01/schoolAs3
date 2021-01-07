@@ -50,9 +50,11 @@
             // iSBN
             // 
             this.iSBN.AutoSize = true;
-            this.iSBN.Location = new System.Drawing.Point(238, 34);
+            this.iSBN.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iSBN.Location = new System.Drawing.Point(332, 33);
+            this.iSBN.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.iSBN.Name = "iSBN";
-            this.iSBN.Size = new System.Drawing.Size(32, 13);
+            this.iSBN.Size = new System.Drawing.Size(43, 17);
             this.iSBN.TabIndex = 0;
             this.iSBN.Text = "ISBN";
             this.iSBN.Click += new System.EventHandler(this.label1_Click);
@@ -60,18 +62,22 @@
             // titel
             // 
             this.titel.AutoSize = true;
-            this.titel.Location = new System.Drawing.Point(243, 93);
+            this.titel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titel.Location = new System.Drawing.Point(332, 111);
+            this.titel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.titel.Name = "titel";
-            this.titel.Size = new System.Drawing.Size(27, 13);
+            this.titel.Size = new System.Drawing.Size(40, 17);
             this.titel.TabIndex = 1;
             this.titel.Text = "Titel";
             // 
             // autor
             // 
             this.autor.AutoSize = true;
-            this.autor.Location = new System.Drawing.Point(238, 64);
+            this.autor.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.autor.Location = new System.Drawing.Point(325, 75);
+            this.autor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.autor.Name = "autor";
-            this.autor.Size = new System.Drawing.Size(32, 13);
+            this.autor.Size = new System.Drawing.Size(47, 17);
             this.autor.TabIndex = 2;
             this.autor.Text = "Autor";
             this.autor.Click += new System.EventHandler(this.label3_Click);
@@ -79,9 +85,11 @@
             // description
             // 
             this.description.AutoSize = true;
-            this.description.Location = new System.Drawing.Point(198, 221);
+            this.description.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.description.Location = new System.Drawing.Point(265, 268);
+            this.description.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.description.Name = "description";
-            this.description.Size = new System.Drawing.Size(72, 13);
+            this.description.Size = new System.Drawing.Size(107, 17);
             this.description.TabIndex = 3;
             this.description.Text = "Beschreibung";
             this.description.Click += new System.EventHandler(this.label4_Click);
@@ -89,18 +97,22 @@
             // inventory
             // 
             this.inventory.AutoSize = true;
-            this.inventory.Location = new System.Drawing.Point(182, 183);
+            this.inventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inventory.Location = new System.Drawing.Point(241, 222);
+            this.inventory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.inventory.Name = "inventory";
-            this.inventory.Size = new System.Drawing.Size(88, 13);
+            this.inventory.Size = new System.Drawing.Size(131, 17);
             this.inventory.TabIndex = 4;
             this.inventory.Text = "Inventar Nummer";
             // 
             // condition
             // 
             this.condition.AutoSize = true;
-            this.condition.Location = new System.Drawing.Point(224, 151);
+            this.condition.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.condition.Location = new System.Drawing.Point(305, 182);
+            this.condition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.condition.Name = "condition";
-            this.condition.Size = new System.Drawing.Size(46, 13);
+            this.condition.Size = new System.Drawing.Size(67, 17);
             this.condition.TabIndex = 5;
             this.condition.Text = "Zustand";
             this.condition.Click += new System.EventHandler(this.label6_Click);
@@ -108,75 +120,86 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(42, 124);
+            this.label7.Location = new System.Drawing.Point(56, 153);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(0, 13);
+            this.label7.Size = new System.Drawing.Size(0, 17);
             this.label7.TabIndex = 6;
             // 
             // publisher
             // 
             this.publisher.AutoSize = true;
-            this.publisher.Location = new System.Drawing.Point(195, 120);
+            this.publisher.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.publisher.Location = new System.Drawing.Point(317, 144);
+            this.publisher.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.publisher.Name = "publisher";
-            this.publisher.Size = new System.Drawing.Size(75, 13);
+            this.publisher.Size = new System.Drawing.Size(55, 17);
             this.publisher.TabIndex = 7;
-            this.publisher.Text = "Veröffentlicher";
+            this.publisher.Text = "Verlag";
             // 
             // txtISBN
             // 
-            this.txtISBN.Location = new System.Drawing.Point(285, 27);
+            this.txtISBN.Location = new System.Drawing.Point(380, 33);
+            this.txtISBN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtISBN.Name = "txtISBN";
-            this.txtISBN.Size = new System.Drawing.Size(474, 20);
+            this.txtISBN.Size = new System.Drawing.Size(631, 22);
             this.txtISBN.TabIndex = 8;
             // 
             // txtAuthor
             // 
-            this.txtAuthor.Location = new System.Drawing.Point(285, 61);
+            this.txtAuthor.Location = new System.Drawing.Point(380, 75);
+            this.txtAuthor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtAuthor.Name = "txtAuthor";
-            this.txtAuthor.Size = new System.Drawing.Size(474, 20);
+            this.txtAuthor.Size = new System.Drawing.Size(631, 22);
             this.txtAuthor.TabIndex = 9;
             // 
             // txtInventoryNumber
             // 
-            this.txtInventoryNumber.Location = new System.Drawing.Point(285, 180);
+            this.txtInventoryNumber.Location = new System.Drawing.Point(380, 222);
+            this.txtInventoryNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtInventoryNumber.Name = "txtInventoryNumber";
-            this.txtInventoryNumber.Size = new System.Drawing.Size(474, 20);
+            this.txtInventoryNumber.Size = new System.Drawing.Size(631, 22);
             this.txtInventoryNumber.TabIndex = 10;
             // 
             // txtCondition
             // 
-            this.txtCondition.Location = new System.Drawing.Point(285, 148);
+            this.txtCondition.Location = new System.Drawing.Point(380, 182);
+            this.txtCondition.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCondition.Name = "txtCondition";
-            this.txtCondition.Size = new System.Drawing.Size(474, 20);
+            this.txtCondition.Size = new System.Drawing.Size(631, 22);
             this.txtCondition.TabIndex = 11;
             // 
             // txtPublisher
             // 
-            this.txtPublisher.Location = new System.Drawing.Point(285, 117);
+            this.txtPublisher.Location = new System.Drawing.Point(380, 144);
+            this.txtPublisher.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPublisher.Name = "txtPublisher";
-            this.txtPublisher.Size = new System.Drawing.Size(474, 20);
+            this.txtPublisher.Size = new System.Drawing.Size(631, 22);
             this.txtPublisher.TabIndex = 12;
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(285, 90);
+            this.txtTitle.Location = new System.Drawing.Point(380, 111);
+            this.txtTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(474, 20);
+            this.txtTitle.Size = new System.Drawing.Size(631, 22);
             this.txtTitle.TabIndex = 13;
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(285, 218);
+            this.txtDescription.Location = new System.Drawing.Point(380, 268);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(474, 146);
+            this.txtDescription.Size = new System.Drawing.Size(631, 179);
             this.txtDescription.TabIndex = 14;
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(684, 402);
+            this.Save.Location = new System.Drawing.Point(912, 495);
+            this.Save.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(75, 23);
+            this.Save.Size = new System.Drawing.Size(100, 28);
             this.Save.TabIndex = 15;
             this.Save.Text = "Speichern";
             this.Save.UseVisualStyleBackColor = true;
@@ -184,9 +207,10 @@
             // 
             // cancel
             // 
-            this.cancel.Location = new System.Drawing.Point(603, 402);
+            this.cancel.Location = new System.Drawing.Point(804, 495);
+            this.cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(75, 23);
+            this.cancel.Size = new System.Drawing.Size(100, 28);
             this.cancel.TabIndex = 16;
             this.cancel.Text = "Abbrechen";
             this.cancel.UseVisualStyleBackColor = true;
@@ -194,9 +218,9 @@
             // 
             // AddBookView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.txtDescription);
@@ -214,6 +238,7 @@
             this.Controls.Add(this.autor);
             this.Controls.Add(this.titel);
             this.Controls.Add(this.iSBN);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AddBookView";
             this.Text = "AddBookView";
             this.ResumeLayout(false);

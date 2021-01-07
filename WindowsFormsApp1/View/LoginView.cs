@@ -46,16 +46,6 @@ namespace WindowsFormsApp1.View
             this.Focus();
         }
 
-        private void register_linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            var psi = new ProcessStartInfo
-            {
-                FileName = "",
-                UseShellExecute = true 
-            };
-            Process.Start(psi);
-        }
-
         private void password_tbox_KeyDown(object sender, KeyEventArgs e)
         {
             if (Controller.IsEnterKey(e))

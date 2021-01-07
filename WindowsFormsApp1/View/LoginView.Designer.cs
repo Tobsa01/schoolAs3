@@ -42,7 +42,8 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(13, 12);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(363, 147);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -51,25 +52,31 @@
             // 
             // username_tbox
             // 
+
             this.username_tbox.Location = new System.Drawing.Point(125, 185);
+
             this.username_tbox.Name = "username_tbox";
-            this.username_tbox.Size = new System.Drawing.Size(191, 20);
+            this.username_tbox.Size = new System.Drawing.Size(253, 22);
             this.username_tbox.TabIndex = 1;
             // 
             // password_tbox
             // 
+
             this.password_tbox.Location = new System.Drawing.Point(125, 211);
+
             this.password_tbox.Name = "password_tbox";
             this.password_tbox.PasswordChar = '*';
-            this.password_tbox.Size = new System.Drawing.Size(191, 20);
+            this.password_tbox.Size = new System.Drawing.Size(253, 22);
             this.password_tbox.TabIndex = 2;
             this.password_tbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.password_tbox_KeyDown);
             // 
             // logInBtn
             // 
+
             this.logInBtn.Location = new System.Drawing.Point(252, 237);
+
             this.logInBtn.Name = "logInBtn";
-            this.logInBtn.Size = new System.Drawing.Size(64, 20);
+            this.logInBtn.Size = new System.Drawing.Size(85, 26);
             this.logInBtn.TabIndex = 3;
             this.logInBtn.Text = "Log in";
             this.logInBtn.UseVisualStyleBackColor = true;
@@ -80,27 +87,29 @@
             this.error_label.AutoSize = true;
             this.error_label.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.error_label.ForeColor = System.Drawing.Color.Red;
-            this.error_label.Location = new System.Drawing.Point(71, 327);
+            this.error_label.Location = new System.Drawing.Point(95, 402);
+            this.error_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.error_label.Name = "error_label";
-            this.error_label.Size = new System.Drawing.Size(0, 20);
+            this.error_label.Size = new System.Drawing.Size(0, 25);
             this.error_label.TabIndex = 5;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(363, 10);
+            this.pictureBox2.Location = new System.Drawing.Point(484, 12);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(369, 257);
+            this.pictureBox2.Size = new System.Drawing.Size(492, 316);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 6;
             this.pictureBox2.TabStop = false;
             // 
             // LoginView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(744, 283);
+            this.ClientSize = new System.Drawing.Size(992, 348);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.error_label);
             this.Controls.Add(this.logInBtn);
@@ -108,6 +117,7 @@
             this.Controls.Add(this.username_tbox);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LoginView";
             this.Text = "Clinton Bibliothek - Management";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginView_FormClosed);

@@ -46,12 +46,8 @@ namespace WindowsFormsApp1
 
         public void ShowForm()
         {
+            RefreshData();
             Show();
-        }
-
-        public void LoadForm()
-        {
-            InitializeComponent();
         }
 
         private void AdminView_FormClosed(object sender, FormClosedEventArgs e)
@@ -123,6 +119,13 @@ namespace WindowsFormsApp1
 
             table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", Search_txb.Text);
 
+        }
+        private void RefreshData()
+        {
+            dataGridView1.DataSource = bindingSource1;
+            GetData("select * from Issues;", dataGridView1, bindingSource1);
+            dataGridView2.DataSource = bindingSource2;
+            GetData("select * from Reservations;", dataGridView2, bindingSource2);
         }
     }
 }
