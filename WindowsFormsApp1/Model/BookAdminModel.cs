@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1.Model
 {
@@ -75,9 +76,23 @@ namespace WindowsFormsApp1.Model
 
         public static void delete_Book(string ISBN, string inventoryNumber)
         {
-            Books books = context.Books.Where(u => u.ISBN == ISBN && u.Inventar_Number == inventoryNumber).First();
-            context.Books.Remove(books);
-            context.SaveChanges();
+            try
+            {
+                Books books = context.Books.Where(u => u.ISBN == ISBN && u.Inventar_Number == inventoryNumber).First();
+                if ((context.Reservations.Any(u => u.FK_ISBN == ISBN && u.FK_Inventar_Number == inventoryNumber)))
+                {
+                    context.Reservations.Remove(context.Reservations.Where(u => u.FK_ISBN == ISBN && u.FK_Inventar_Number == inventoryNumber).First());
+                }
+                if ((context.Issues.Any(u => u.FK_ISBN == ISBN && u.FK_Inventar_Number == inventoryNumber)))
+                {
+                    context.Issues.Remove(context.Issues.Where(u => u.FK_ISBN == ISBN && u.FK_Inventar_Number == inventoryNumber).First());
+                }
+                context.Books.Remove(books);
+                context.SaveChanges();
+            }catch (Exception e)
+            {
+                ErrorWindow.ShowCustomErrorWindow(e.Message+e.InnerException,"Fehler", MessageBoxIcon.Error, MessageBoxButtons.OK);
+            }
         }
     }
 }
