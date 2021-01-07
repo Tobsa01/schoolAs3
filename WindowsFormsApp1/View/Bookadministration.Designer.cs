@@ -30,7 +30,9 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
+
             this.components = new System.ComponentModel.Container();
+
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
@@ -114,7 +116,9 @@ namespace WindowsFormsApp1
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Bookadministration";
             this.Text = "Bücherverwaltung";
+
             //this.Load += new System.EventHandler(this.Form1_Load);
+
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

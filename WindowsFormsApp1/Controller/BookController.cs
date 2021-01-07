@@ -76,5 +76,11 @@ namespace WindowsFormsApp1.Controller
             Reservation res = new Reservation(id, iSBN, inventoryNumber, CurrentUser.getUserId(), CurrentUser.getMANumber());
             BookAdminModel.lendBook(res);
         }
+
+        internal void ReturnBook(string iSBN, string inventoryNumber)
+        {
+            Reservation res = new Reservation(0, iSBN, inventoryNumber, CurrentUser.getUserId(), CurrentUser.getMANumber());
+            BookAdminModel.returnBook(res);
+        }
     }
 }

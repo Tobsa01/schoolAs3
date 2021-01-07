@@ -52,16 +52,18 @@
             // 
             // username_tbox
             // 
-            this.username_tbox.Location = new System.Drawing.Point(95, 232);
-            this.username_tbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+
+            this.username_tbox.Location = new System.Drawing.Point(125, 185);
+
             this.username_tbox.Name = "username_tbox";
             this.username_tbox.Size = new System.Drawing.Size(253, 22);
             this.username_tbox.TabIndex = 1;
             // 
             // password_tbox
             // 
-            this.password_tbox.Location = new System.Drawing.Point(95, 272);
-            this.password_tbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+
+            this.password_tbox.Location = new System.Drawing.Point(125, 211);
+
             this.password_tbox.Name = "password_tbox";
             this.password_tbox.PasswordChar = '*';
             this.password_tbox.Size = new System.Drawing.Size(253, 22);
@@ -70,8 +72,9 @@
             // 
             // logInBtn
             // 
-            this.logInBtn.Location = new System.Drawing.Point(263, 302);
-            this.logInBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+
+            this.logInBtn.Location = new System.Drawing.Point(252, 237);
+
             this.logInBtn.Name = "logInBtn";
             this.logInBtn.Size = new System.Drawing.Size(85, 26);
             this.logInBtn.TabIndex = 3;

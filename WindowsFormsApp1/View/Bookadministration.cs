@@ -21,7 +21,17 @@ namespace WindowsFormsApp1
         private BindingSource bindingSource1 = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         DataTable table = new DataTable { Locale = System.Globalization.CultureInfo.InvariantCulture };
+
+        private bool first_load = true;
+        private int positionDelete;
+        private int positionReserve;
+        private int positionIssue;
+        private int positionReturn;
+
+        private int positionUpdate;
+
         private static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
+
 
 
         public Bookadministration(BookController controller)
@@ -74,9 +84,22 @@ namespace WindowsFormsApp1
                     }
                     dataRow["_RowString"] = sb.ToString();
                 }
-               
-                dataGridView1.DataSource = bindingSource1;
-                dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+
+                
+                // Hide filter string column
+                dataGridView1.Columns["_RowString"].Visible = false;
+                
+                addButton("Löschen", ref positionDelete);
+                addButton("Reservieren", ref positionReserve);
+                addButton("Ausleihe", ref positionIssue);
+                addButton("Rückgabe", ref positionReturn);
+                addButton("Bearbeiten", ref positionUpdate);
+
+                // Resize the DataGridView columns to fit the newly loaded content.
+
+                dataGridView1.AutoResizeColumns(
+                    DataGridViewAutoSizeColumnsMode.AllCells);
+
                 dataAdapter.Update((DataTable)bindingSource1.DataSource);
             }
             catch (SqlException sql)
@@ -122,7 +145,14 @@ namespace WindowsFormsApp1
             {
                 Controller.ShowBookInformation(iSBN, inventoryNumber);
             }
+
+            if (e.ColumnIndex == dataGridView1.Columns["Rückgabe"].Index)
+            {
+                Controller.ReturnBook(iSBN, inventoryNumber);
+            }
+ 
              if (e.ColumnIndex == dataGridView1.Columns["Ausleihe"].Index)
+
             {
                 Controller.ShowBookInformation(iSBN, inventoryNumber);
             }
