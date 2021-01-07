@@ -35,11 +35,8 @@ namespace WindowsFormsApp1
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-<<<<<<< HEAD
             this.label1 = new System.Windows.Forms.Label();
-=======
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
->>>>>>> Bug Fixing Bookadministration
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,20 +65,6 @@ namespace WindowsFormsApp1
             this.dataGridView1.Size = new System.Drawing.Size(971, 406);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-<<<<<<< HEAD
-=======
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(10, 83);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 19);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Suche";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
->>>>>>> Bug Fixing Bookadministration
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(13, 155);
@@ -103,8 +86,6 @@ namespace WindowsFormsApp1
             this.btnAdd.Text = "Hinzufügen";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-<<<<<<< HEAD
             // label1
             // 
             this.label1.AutoSize = true;
@@ -114,13 +95,11 @@ namespace WindowsFormsApp1
             this.label1.Size = new System.Drawing.Size(111, 32);
             this.label1.TabIndex = 14;
             this.label1.Text = "Bücher";
-=======
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip1.Text = "Suche";
->>>>>>> Bug Fixing Bookadministration
             // 
             // Bookadministration
             // 

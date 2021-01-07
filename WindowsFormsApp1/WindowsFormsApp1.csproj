@@ -304,6 +304,10 @@
       <DependentUpon>LibratorsModel.edmx</DependentUpon>
       <LastGenOutput>LibratorsModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Librators_log.ldf">
+      <DependentUpon>Librators.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
