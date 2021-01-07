@@ -59,7 +59,25 @@ namespace WindowsFormsApp1.Model
                 ReservationDate = res.ReservationDate,
                 FK_MANumber = res.MANumber,
             };
+            context.SaveChanges();
             context.Reservations.Add(reservation);
+            context.SaveChanges();
+        }
+
+        public static void lendBook(Reservation res)
+        {
+            Issues issue = new Issues
+            {
+                FK_Inventar_Number = res.Inventar_Number,
+                FK_ISBN = res.ISBN,
+                FK_UserID = res.UserID,
+                IssueState="aus",
+                StartDate = res.ReservationDate,
+                ReturnDate = res.ReservationDate.AddDays(30),
+                FK_MANumber = res.MANumber,
+            };
+            
+            context.Issues.Add(issue);
             context.SaveChanges();
         }
 

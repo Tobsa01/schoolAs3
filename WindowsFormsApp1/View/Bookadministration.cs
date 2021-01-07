@@ -24,6 +24,7 @@ namespace WindowsFormsApp1
         private bool first_load = true;
         private int positionDelete;
         private int positionReserve;
+        private int positionIssue;
         private int positionUpdate;
 
         public Bookadministration(BookController controller)
@@ -77,6 +78,7 @@ namespace WindowsFormsApp1
                 dataGridView1.Columns["_RowString"].Visible = false;
                 addButton("Löschen", ref positionDelete);
                 addButton("Reservieren", ref positionReserve);
+                addButton("Ausleihe", ref positionIssue);
                 addButton("Bearbeiten", ref positionUpdate);
 
                 // Resize the DataGridView columns to fit the newly loaded content.
@@ -136,23 +138,15 @@ namespace WindowsFormsApp1
             {
                 Controller.ReserveBook(iSBN, inventoryNumber);
             }
+            if (e.ColumnIndex == positionIssue)
+            {
+                Controller.LendBook(iSBN, inventoryNumber);
+            }
             if (e.ColumnIndex == positionUpdate)
             {
                 Controller.ShowBookInformation(iSBN, inventoryNumber);
             }
-                //    GetData("INSERT INTO Reservations (FK_ISBN, FK_Inventar_Number, FK_UserID, FK_MANumber, ReservationDate) " +
-                //        "Values ((SELECT ISBN FROM Books Where Inventar_Number= '" + inv + "'), '" + inv +
-                //        "', 1, 1234, CURRENT_TIMESTAMP)");
-
-                //    dataAdapter.Update((DataTable)bindingSource1.DataSource);
-
-                //    GetData("INSERT INTO Issues (FK_ISBN, FK_Inventar_Number, FK_UserID, FK_MANumber, ReturnDate, StartDate, IssueState) " +
-                //        "Values ((SELECT ISBN FROM Books Where Inventar_Number= '" + inv + "'), '" + inv +
-                //        "', 1, 1234, DATEADD(month, 1, CURRENT_TIMESTAMP), CURRENT_TIMESTAMP, 'aus')");
-                //    dataAdapter.Update((DataTable)bindingSource1.DataSource);
-
-                //    GetData("SELECT * FROM Reservations");
-                //
+             
             }
 
         private void button2_Click(object sender, EventArgs e)
