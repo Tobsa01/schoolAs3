@@ -146,7 +146,6 @@
     <Compile Include="Book.cs" />
     <Compile Include="Controller\AddBookController.cs" />
     <Compile Include="Controller\AddUserController.cs" />
-    <Compile Include="Controller\BookAdminController.cs" />
     <Compile Include="Controller\BookController.cs" />
     <Compile Include="Model\BookAdminModel.cs" />
     <Compile Include="Model\CurrentUser.cs" />
@@ -190,12 +189,6 @@
     <Compile Include="Issues.cs">
       <DependentUpon>LibratorsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\BookAdminView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\BookAdminView.designer.cs">
-      <DependentUpon>BookAdminView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\AdminView.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -234,12 +227,6 @@
     <Compile Include="Users.cs">
       <DependentUpon>LibratorsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\old_vIEW.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\old_vIEW.Designer.cs">
-      <DependentUpon>old_vIEW.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\LoginView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,12 +239,6 @@
     <Compile Include="View\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\UserView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\UserView.Designer.cs">
-      <DependentUpon>UserView.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="View\AddBookView.resx">
       <DependentUpon>AddBookView.cs</DependentUpon>
     </EmbeddedResource>
@@ -266,9 +247,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Bookadministration.resx">
       <DependentUpon>Bookadministration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\BookAdminView.resx">
-      <DependentUpon>BookAdminView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AdminView.resx">
       <DependentUpon>AdminView.cs</DependentUpon>
@@ -285,17 +263,11 @@
     <EmbeddedResource Include="View\Useradministration.resx">
       <DependentUpon>Useradministration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\old_vIEW.resx">
-      <DependentUpon>old_vIEW.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\UserView.resx">
-      <DependentUpon>UserView.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="LibratorsModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
