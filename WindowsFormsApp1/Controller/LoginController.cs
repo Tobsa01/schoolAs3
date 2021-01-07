@@ -53,7 +53,7 @@ namespace WindowsFormsApp1
                     }
                 }
             else {
-                View.SetErrorLabel("Username or Password is incorrect!");
+                ErrorWindow.ShowCustomErrorWindow("wrong user or password", "login failed", MessageBoxIcon.Error, MessageBoxButtons.OK);
             }
         }
         public bool IsAdmin(string username)
