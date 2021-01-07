@@ -68,19 +68,19 @@ namespace WindowsFormsApp1
         {
             Controller.User();
         }
-       
+
         private void GetData(string selectCommand, DataGridView dgv, BindingSource bs)
         {
             try
             {
                 table.Clear();
+
                 String connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
                 dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
                 if (first_load)
                 {
-                    DataColumn dcRowString = table.Columns.Add("_RowString", typeof(string)); //System.Data.DuplicateNameException
-                                                                                              // build filter string
+                    DataColumn dcRowString = table.Columns.Add("_RowString", typeof(string));
                     foreach (DataRow dataRow in table.Rows)
                     {
                         StringBuilder sb = new StringBuilder();
@@ -95,11 +95,12 @@ namespace WindowsFormsApp1
                 }
 
                 // Hide filter string column
-               
+
                 dataAdapter.Fill(table);
 
                 bs.DataSource = table;
-                dataGridView1.Columns["_RowString"].Visible = false;
+                dgv.Columns["_RowString"].Visible = false;
+
                 dgv.AutoResizeColumns(
                     DataGridViewAutoSizeColumnsMode.AllCells);
             }
@@ -111,14 +112,14 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = bindingSource1;
-            GetData("select * from Issues;", dataGridView1, bindingSource1);
-            dataGridView2.DataSource = bindingSource2;
-            GetData("select * from Reservations;", dataGridView2, bindingSource2);
+           dataGridView1.DataSource = bindingSource1;
+           GetData("select * from Issues;", dataGridView1, bindingSource1);
+         
         }
 
         private void Search_txb_TextChanged(object sender, EventArgs e)
         {
+
             table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", Search_txb.Text);
 
         }
