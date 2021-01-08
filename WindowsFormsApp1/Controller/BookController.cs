@@ -72,9 +72,8 @@ namespace WindowsFormsApp1.Controller
 
         public void LendBook(string iSBN, string inventoryNumber)
         {
-            int id = BookAdminModel.maxReservationId();
-            Reservation res = new Reservation(id, iSBN, inventoryNumber, CurrentUser.getUserId(), CurrentUser.getMANumber());
-            BookAdminModel.lendBook(res);
+            var lcontroller = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.LendController>();
+            lcontroller.ShowForm(iSBN, inventoryNumber);
         }
 
         internal void ReturnBook(string iSBN, string inventoryNumber)
