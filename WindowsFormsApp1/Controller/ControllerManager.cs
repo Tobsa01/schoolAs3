@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WindowsFormsApp1.Controller
 {
@@ -22,6 +23,13 @@ namespace WindowsFormsApp1.Controller
             var result = Get<T>();
             Controller.Remove(typeof(T));
             return result;
+        }
+        public static void Clear()
+        {
+            List<Type> types = Controller.Keys.ToList();
+            foreach (Type t in types) { 
+                Controller.Remove(t);
+            }
         }
     }
 }
