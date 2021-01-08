@@ -50,7 +50,8 @@ namespace WindowsFormsApp1.Model
         }
         public static void reserveBook(Reservation res)
         {
-            
+            if (!IsReserved(res, res.UserID))
+            {
                 Reservations reservation = new Reservations
                 {
                     FK_Inventar_Number = res.Inventar_Number,
@@ -64,28 +65,34 @@ namespace WindowsFormsApp1.Model
                 context.Reservations.Add(reservation);
                 context.SaveChanges();
                 MessageBox.Show("Ihr Buch mit der ISBN " + res.ISBN + " wurde für Sie reserviert!", "Vormerkung", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
-           
+            } else {
+                MessageBox.Show("Das Buch wurde bereits von einem anderen Nutzer vorgemerkt.", "Vormerkung vorhanden", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         public static void lendBook(Reservation res)
         {
             //Todo: Popup-> Ausleihen auf welche Userid
-            if (!IsReserved(res, CurrentUser.getUserId()))
+            if (!IsReserved(res, res.UserID))
             {
-                Issues issue = new Issues
+                if (!IsLend(res.ISBN, res.Inventar_Number))
                 {
-                    FK_Inventar_Number = res.Inventar_Number,
-                    FK_ISBN = res.ISBN,
-                    FK_UserID = res.UserID,
-                    IssueState = "aus",
-                    StartDate = res.ReservationDate,
-                    ReturnDate = res.ReservationDate.AddDays(30),
-                    FK_MANumber = res.MANumber,
-                };
-
-                context.Issues.Add(issue);
-                context.SaveChanges();
+                    Issues issue = new Issues
+                    {
+                        FK_Inventar_Number = res.Inventar_Number,
+                        FK_ISBN = res.ISBN,
+                        FK_UserID = res.UserID,
+                        IssueState = "aus",
+                        StartDate = res.ReservationDate,
+                        ReturnDate = res.ReservationDate.AddDays(30),
+                        FK_MANumber = res.MANumber,
+                    };
+                    context.Issues.Add(issue);
+                    context.SaveChanges();
+                }
+                else {
+                    MessageBox.Show("Das Buch wurde bereits von einem anderen Nutzer ausgeliehen.", "Vormerkung vorhanden", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else {
                 MessageBox.Show("Das Buch wurde bereits von einem anderen Nutzer vorgemerkt.","Vormerkung vorhanden", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -107,8 +114,7 @@ namespace WindowsFormsApp1.Model
         {
             try
             {
-                int id = 1111;
-                if ((context.Issues.Any(u => u.FK_ISBN == res.ISBN && u.FK_Inventar_Number == res.Inventar_Number && u.FK_UserID == id)))
+                if ((context.Issues.Any(u => u.FK_ISBN == res.ISBN && u.FK_Inventar_Number == res.Inventar_Number)))
                 {
                     Issues i = context.Issues.Where(u => u.FK_ISBN == res.ISBN && u.FK_Inventar_Number == res.Inventar_Number).First();
                     Issues issue = new Issues
@@ -125,6 +131,12 @@ namespace WindowsFormsApp1.Model
                     context.SaveChanges();
                     context.Issues.Add(issue);
                     context.SaveChanges();
+                    List<Reservations> rese = context.Reservations.Where(u => u.FK_ISBN == res.ISBN && u.FK_Inventar_Number == res.Inventar_Number && u.FK_UserID != res.UserID).ToList();
+                    if (rese.Count > 0)
+                    {
+                        context.Reservations.Remove(rese.First());
+                        context.SaveChanges();
+                    }
                 }
 
                 
