@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using WindowsFormsApp1.Controller;
 using WindowsFormsApp1.Model;
 using WindowsFormsApp1.View;
@@ -28,7 +27,8 @@ namespace WindowsFormsApp1.Controller
 
         public void CloseProgram()
         {
-            Application.Exit();
+            var mainController = ControllerManager.Get<MainController>();
+            mainController.CloseForm();
         }
 
         public void HideForm()
@@ -60,7 +60,9 @@ namespace WindowsFormsApp1.Controller
         public void ReserveBook(string iSBN, string inventory_Number)
         {
             int id = BookAdminModel.maxReservationId();
-            Reservation res = new Reservation(id, iSBN, inventory_Number, CurrentUser.getUserId(), CurrentUser.getMANumber());
+            //hier
+            Users u = UserModel.selectUserWithManNr(Bookadministration.UserID);
+            Reservation res = new Reservation(id, iSBN, inventory_Number, u.UserID,u.MANumber);
             BookAdminModel.reserveBook(res);
         }
         public void ShowBookInformation(string iSBN, string inventory_Number)
@@ -70,16 +72,27 @@ namespace WindowsFormsApp1.Controller
             bcontroller.updateBook(b);
         }
 
+
+
         public void LendBook(string iSBN, string inventoryNumber)
         {
-            var lcontroller = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.LendController>();
-            lcontroller.ShowForm(iSBN, inventoryNumber);
+            int id = BookAdminModel.maxReservationId();
+            Users u = UserModel.selectUserWithManNr(Bookadministration.UserID);
+            Reservation res = new Reservation(id, iSBN, inventoryNumber, u.UserID, u.MANumber);
+            BookAdminModel.lendBook(res);
         }
 
         internal void ReturnBook(string iSBN, string inventoryNumber)
         {
             Reservation res = new Reservation(0, iSBN, inventoryNumber, CurrentUser.getUserId(), CurrentUser.getMANumber());
             BookAdminModel.returnBook(res);
+        }
+
+        public void AskUserID()
+        {
+            
+            var getUserIDcontroller = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.GetUserIdController>();
+            
         }
     }
 }

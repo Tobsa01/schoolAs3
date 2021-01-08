@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using WindowsFormsApp1.Controller;
 using WindowsFormsApp1.Model;
 
@@ -12,69 +17,59 @@ namespace WindowsFormsApp1
     public partial class Bookadministration : Form
     {
         private BookController Controller { get; }
+        public static int UserID { get; set; }
+        private WindowsFormsApp1.Model.BookAdminModel Model { get; }
         private BindingSource bindingSource1 = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         DataTable table = new DataTable { Locale = System.Globalization.CultureInfo.InvariantCulture };
+
         private static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
+
+
+
         public Bookadministration(BookController controller)
         {
             Visible = false;
             InitializeComponent();
             Controller = controller;
+            Model = Controller.Model;
             bindingSource1.DataSource = table;
             dataGridView1.DataSource = bindingSource1;
             createTable();
-            GetData();
+            CurrentUser.getInstance();
+            GetData("select * from Books");
         }
         public void HideForm()
         {
             Hide();
         }
+
         public void ShowForm()
         {
             
             Show();
+            RefreshData();
             
         }
         private void createTable()
         {
-            dataAdapter = new SqlDataAdapter("SELECT * FROM Books", connectionString);
+            dataAdapter = new SqlDataAdapter("select * from Books", connectionString);
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
             dataAdapter.Fill(table);
+            addButton("Löschen");
             addButton("Reservieren");
-            if (CurrentUser.getAdmin())
-            {
-                addButton("Ausleihe");
-                addButton("Rückgabe");
-                addButton("Löschen");
-                addButton("Bearbeiten");
-            } else
-            {
-                btnAdd.Hide();
-                button2.Hide();
-                label1.Text = "Alle Bücher";
-            }
+            addButton("Ausleihe");
+            addButton("Rückgabe");
+            addButton("Bearbeiten");
             table.Columns.Add("_RowString", typeof(string));
             dataGridView1.Columns["_RowString"].Visible = false;
         }
-        private void addButton(string buttonName)
-        {
-            DataGridViewButtonColumn button = new DataGridViewButtonColumn();
-            button.Name = buttonName;
-            button.Text = buttonName;
-            if (dataGridView1.Columns[buttonName] == null)
-            {
-                dataGridView1.Columns.Add(button);
-            }
-        }
-        private void GetData()
+        private void GetData(string selectCommand)
         {
             try
             {
                 table.Clear();
-                string query;
-                if (CurrentUser.getAdmin()) query = "select * from Books";
-                else query = "select * from Books b Where NOT b.ISBN = ANY (SELECT FK_ISBN FROM Issues Where IssueState ='aus' AND FK_ISBN =b.ISBN)";
-                dataAdapter = new SqlDataAdapter(query, connectionString);
+                dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
                 dataAdapter.Fill(table);
                 int z = 0;
@@ -82,6 +77,7 @@ namespace WindowsFormsApp1
                 {
                    
                     if (BookAdminModel.IsLend(dataRow[0].ToString(), dataRow[1].ToString())) {
+                           
                         DataGridViewRow row = dataGridView1.Rows[z];
                         row.DefaultCellStyle.BackColor = Color.Blue;
                     }
@@ -94,55 +90,110 @@ namespace WindowsFormsApp1
                     dataRow["_RowString"] = sb.ToString();
                     z++;
                 }
-                // Resize the DataGridView columns to fit the newly loaded content.
-                dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                // Hide filter string column
+                dataGridView1.Columns["_RowString"].Visible = false;
+                dataGridView1.AutoResizeColumns(
+                    DataGridViewAutoSizeColumnsMode.AllCells);
+
+                dataAdapter.Update((DataTable)bindingSource1.DataSource);
+               
             }
             catch (SqlException sql)
             {
                 MessageBox.Show("Keine Einträge vorhanden! " + sql.Message);
             }
         }
+        private void addButton(string buttonName)
+        {
+            DataGridViewButtonColumn button = new DataGridViewButtonColumn();
+            button.Name = buttonName;
+            button.Text = buttonName;
+            if (dataGridView1.Columns[buttonName] == null)
+            {
+                dataGridView1.Columns.Add(button);
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = bindingSource1;
+            GetData("select * from Books");
+            if (!CurrentUser.getAdmin())
+            {
+                label1.Text = "Alle Bücher";
+
+                dataGridView1.Columns["Ausleihe"].Visible = false;
+                dataGridView1.Columns["Rückgabe"].Visible = false;
+                dataGridView1.Columns["Bearbeiten"].Visible = false;
+                dataGridView1.Columns["Löschen"].Visible = false;
+                btnAdd.Visible = false;
+                button2.Visible = false;
+
+            }
+            else { button2.Visible = false; }
+            dataAdapter.Update((DataTable)bindingSource1.DataSource);
+
+        }
         private int HeaderPosition(string value)
         {
             return dataGridView1.Columns[value].Index;
         }
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            dataGridView1.DataSource = bindingSource1;
             string inventoryNumber = dataGridView1.Rows[e.RowIndex].Cells[HeaderPosition("Inventar_Number")].Value.ToString();
             string iSBN = dataGridView1.Rows[e.RowIndex].Cells[HeaderPosition("ISBN")].Value.ToString();
+            if (e.ColumnIndex == dataGridView1.Columns["Löschen"].Index)
+            {
+                Controller.Delete(iSBN, inventoryNumber);
+            }
             if (e.ColumnIndex == HeaderPosition("Reservieren"))
             {
-                Controller.ReserveBook(iSBN, inventoryNumber);
+                if (CurrentUser.getAdmin())
+                {
+                    var getUserIdController = ControllerManager.Get<GetUserIdController>();
+                    getUserIdController.ShowForm();
+                    //Controller.ReserveBook(iSBN, inventoryNumber);
+                }
+               Controller.ReserveBook(iSBN, inventoryNumber); 
+                
             }
-           
-            if (CurrentUser.getAdmin()) { 
-                if (e.ColumnIndex == HeaderPosition("Rückgabe"))
+            if (e.ColumnIndex == HeaderPosition("Bearbeiten"))
+            {
+                if (CurrentUser.getAdmin()) { var getUserIdController = ControllerManager.Get<GetUserIdController>(); }
+
+                Controller.ShowBookInformation(iSBN, inventoryNumber);
+            }
+
+            if (e.ColumnIndex == HeaderPosition("Rückgabe"))
+            {
+                Controller.ReturnBook(iSBN, inventoryNumber);
+            }
+ 
+             if (e.ColumnIndex == HeaderPosition("Ausleihe"))
+
+            {
+                if (CurrentUser.getAdmin())
                 {
-                    Controller.ReturnBook(iSBN, inventoryNumber);
+                    var getUserIdController = ControllerManager.Get<GetUserIdController>();
+                    getUserIdController.ShowForm();
+                    //Controller.ReserveBook(iSBN, inventoryNumber);
                 }
-                if (e.ColumnIndex == HeaderPosition("Ausleihe"))
-                {
                 Controller.LendBook(iSBN, inventoryNumber);
-                }
-                if (e.ColumnIndex == HeaderPosition("Löschen"))
-                {
-                    Controller.Delete(iSBN, inventoryNumber);
-                }
-                if (e.ColumnIndex == HeaderPosition("Bearbeiten"))
-                {
-                    Controller.ShowBookInformation(iSBN, inventoryNumber);
-                }
             }
             RefreshData();
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             Controller.Back();
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            GetData();
+            GetData("select * from Books");
             if (textBox1.Text != "Suche") table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
+            dataAdapter.Update((DataTable)bindingSource1.DataSource);
         }
         private void textBox1_Clicked(object sender, EventArgs e)
         {
@@ -150,13 +201,40 @@ namespace WindowsFormsApp1
         }
         public void RefreshData()
         {
-            GetData();
+            dataGridView1.DataSource = bindingSource1;
+            if (!CurrentUser.getAdmin()) { 
+                label1.Text ="Verfügbare Bücher";
+            
+            GetData("select * from Books b Where NOT b.ISBN = ANY (SELECT FK_ISBN FROM Issues Where IssueState ='aus' AND FK_ISBN =b.ISBN)");
+            if(textBox1.Text != "Suche") table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
+           
+                dataGridView1.Columns["Ausleihe"].Visible = false;
+                dataGridView1.Columns["Rückgabe"].Visible = false;
+                dataGridView1.Columns["Bearbeiten"].Visible = false;
+                dataGridView1.Columns["Löschen"].Visible = false;
+                btnAdd.Visible = false;
+                button2.Visible = false;
+
+            }
+            else { 
+                button1.Visible = false;
+
+                dataGridView1.Columns["Ausleihe"].Visible = true;
+                dataGridView1.Columns["Rückgabe"].Visible = true;
+                dataGridView1.Columns["Bearbeiten"].Visible = true;
+                dataGridView1.Columns["Löschen"].Visible = true;
+                btnAdd.Visible = true;
+                button2.Visible = true;
+                GetData("select * from Books");}
+    
+                dataAdapter.Update((DataTable)bindingSource1.DataSource);
+
         }
        
         public void GetAllData()
         {
             dataGridView1.DataSource = bindingSource1;
-            // GetData("select * from Books");
+            GetData("select * from Books");
             if (textBox1.Text != "Suche") table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
             if (!CurrentUser.getAdmin())
             {
@@ -184,10 +262,6 @@ namespace WindowsFormsApp1
             var loginController = ControllerManager.Get<LoginController>();
             loginController.ClearForm();
             loginController.ShowForm();
-        }
-        private void Bookadministration_FormClose(object sender, FormClosedEventArgs e)
-        {
-            Controller.CloseProgram();
         }
     } 
 }

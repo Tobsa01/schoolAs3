@@ -8,50 +8,7 @@ namespace WindowsFormsApp1
 {
     public class UserModel
     {
-        /*private LibratorsEntities context = new LibratorsEntities();
-
-        public List<Users> select_User_for_Login(string email, string password)
-        {
-            var query = from user in context.Users
-                        where user.EMailAddress == email && user.EncryptedPW == password
-                        select user;
-
-            return query.ToList();
-        }
-
-        public void insert_User(string lastName, string firstName, string email, int MANumber, string role, string password)
-        {
-            Users user = new Users
-            {
-                LastName = lastName,
-                FirstName = firstName,
-                EMailAddress = email,
-                MANumber = MANumber,
-                Rolle = role,
-                EncryptedPW = password
-            };
-            context.Users.Add(user);
-            context.SaveChanges();
-        }
-
-        public void update_User(string lastName, string firstName, string email, int MANumber, string role, string password)
-        {
-            Users user = context.Users.Where(u => u.MANumber == MANumber).First();
-            user.LastName = lastName;
-            user.FirstName = firstName;
-            user.EMailAddress = email;
-            user.MANumber = MANumber;
-            user.Rolle = role;
-            user.EncryptedPW = password;
-            context.SaveChanges();
-        }
-
-        public void delete_User(int MANumber)
-        {
-            Users user = context.Users.Where(u => u.MANumber == MANumber).First();
-            context.Users.Remove(user);
-            context.SaveChanges();
-        }*/
+       
 
 
         private static LibratorsEntities context = new LibratorsEntities();
@@ -75,6 +32,11 @@ namespace WindowsFormsApp1
         public static Users selectUserWithId(int userId)
         {
             Users user = context.Users.Where(u => userId == u.UserID).First();
+            return user;
+        }
+        public static Users selectUserWithManNr(int man)
+        {
+            Users user = context.Users.Where(u => man == u.MANumber).First();
             return user;
         }
         public static void insert_User(string lastName, string firstName, string email, int MANumber, string role, string password)
