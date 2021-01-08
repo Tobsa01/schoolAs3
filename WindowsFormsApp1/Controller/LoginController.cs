@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using WindowsFormsApp1.Controller;
 using WindowsFormsApp1.Model;
 
 namespace WindowsFormsApp1
@@ -42,14 +43,15 @@ namespace WindowsFormsApp1
             Users loginUser = UserModel.select_User_for_Login(username, password);
             CurrentUser.setCurrentUser(loginUser);
             if (CurrentUser.getInstance().LastName != null) {
+                MainController.afterLogin();
                 if (CurrentUser.getAdmin()) {
                         HideForm();
                         var admin = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.AdminController>();
                         admin.ShowForm();
                 } else {
                     HideForm();
-                    var user = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.UserController>();
-                    user.ShowForm();
+                    var bookController = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.BookController>();
+                    bookController.ShowForm();
                     }
                 }
             else {
