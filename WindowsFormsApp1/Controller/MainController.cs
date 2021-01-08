@@ -19,6 +19,7 @@ namespace WindowsFormsApp1.Controller
         public static void afterLogin()
         {
             ControllerManager.Clear();
+            ControllerManager.Register(new LoginController());
             ControllerManager.Register(new AdminController());
             ControllerManager.Register(new UserController());
             ControllerManager.Register(new BookController());
