@@ -54,15 +54,15 @@
             // username_tbox
             // 
             this.username_tbox.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.username_tbox.Location = new System.Drawing.Point(125, 183);
-            this.username_tbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.username_tbox.Location = new System.Drawing.Point(125, 175);
+            this.username_tbox.Margin = new System.Windows.Forms.Padding(2);
             this.username_tbox.Name = "username_tbox";
             this.username_tbox.Size = new System.Drawing.Size(191, 20);
             this.username_tbox.TabIndex = 1;
             // 
             // password_tbox
             // 
-            this.password_tbox.Location = new System.Drawing.Point(125, 210);
+            this.password_tbox.Location = new System.Drawing.Point(125, 205);
             this.password_tbox.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.password_tbox.Name = "password_tbox";
             this.password_tbox.PasswordChar = '*';
@@ -76,8 +76,8 @@
             this.logInBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.logInBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logInBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.logInBtn.Location = new System.Drawing.Point(252, 244);
-            this.logInBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.logInBtn.Location = new System.Drawing.Point(252, 239);
+            this.logInBtn.Margin = new System.Windows.Forms.Padding(2);
             this.logInBtn.Name = "logInBtn";
             this.logInBtn.Size = new System.Drawing.Size(64, 25);
             this.logInBtn.TabIndex = 3;
@@ -108,7 +108,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(60, 187);
+            this.label1.Location = new System.Drawing.Point(60, 179);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 13);
             this.label1.TabIndex = 7;
@@ -117,7 +117,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(60, 214);
+            this.label2.Location = new System.Drawing.Point(60, 209);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 8;

@@ -44,7 +44,9 @@ namespace WindowsFormsApp1
 
         public void ShowForm()
         {
+            
             Show();
+            
         }
         private void createTable()
         {
@@ -67,8 +69,15 @@ namespace WindowsFormsApp1
                 dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
                 dataAdapter.Fill(table);
+                int z = 0;
                 foreach (DataRow dataRow in table.Rows)
                 {
+                   
+                    if (BookAdminModel.IsLend(dataRow[0].ToString(), dataRow[1].ToString())) {
+                           
+                        DataGridViewRow row = dataGridView1.Rows[z];
+                        row.DefaultCellStyle.BackColor = Color.Blue;
+                    }
                     StringBuilder sb = new StringBuilder();
                     for (int i = 0; i < table.Columns.Count - 1; i++)
                     {
@@ -76,14 +85,10 @@ namespace WindowsFormsApp1
                         sb.Append("\t");
                     }
                     dataRow["_RowString"] = sb.ToString();
+                    z++;
                 }
-
-                
                 // Hide filter string column
                 dataGridView1.Columns["_RowString"].Visible = false;
-                // Resize the DataGridView columns to fit the newly loaded content.
-                
-               
                 dataGridView1.AutoResizeColumns(
                     DataGridViewAutoSizeColumnsMode.AllCells);
 
@@ -112,6 +117,8 @@ namespace WindowsFormsApp1
             GetData("select * from Books");
             if (!CurrentUser.getAdmin())
             {
+                label1.Text = "Alle Bücher";
+
                 dataGridView1.Columns["Ausleihe"].Visible = false;
                 dataGridView1.Columns["Rückgabe"].Visible = false;
                 dataGridView1.Columns["Bearbeiten"].Visible = false;
@@ -177,10 +184,12 @@ namespace WindowsFormsApp1
         public void RefreshData()
         {
             dataGridView1.DataSource = bindingSource1;
+            if (!CurrentUser.getAdmin()) { 
+                label1.Text ="Verfügbare Bücher";
+            
             GetData("select * from Books b Where NOT b.ISBN = ANY (SELECT FK_ISBN FROM Issues Where IssueState ='aus' AND FK_ISBN =b.ISBN)");
             if(textBox1.Text != "Suche") table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
-            if (!CurrentUser.getAdmin())
-            {
+           
                 dataGridView1.Columns["Ausleihe"].Visible = false;
                 dataGridView1.Columns["Rückgabe"].Visible = false;
                 dataGridView1.Columns["Bearbeiten"].Visible = false;
@@ -189,8 +198,11 @@ namespace WindowsFormsApp1
                 button2.Visible = false;
 
             }
-            else { button2.Visible = false; }
-            dataAdapter.Update((DataTable)bindingSource1.DataSource);
+            else { button1.Visible = false;
+
+                GetData("select * from Books");}
+    
+                dataAdapter.Update((DataTable)bindingSource1.DataSource);
 
         }
        
@@ -209,7 +221,7 @@ namespace WindowsFormsApp1
                 button2.Visible = false;
 
             }
-            else { button2.Visible = false; }
+            else { button1.Visible = false; }
         }
 
         //statt true -> Variable setzen
@@ -220,7 +232,11 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            HideForm();
+           
+            var loginController = ControllerManager.Get<LoginController>();
+            loginController.ClearForm();
+            loginController.ShowForm();
         }
     } 
 }
