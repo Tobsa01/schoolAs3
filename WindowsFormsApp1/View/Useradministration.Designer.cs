@@ -45,6 +45,7 @@
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Suche";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.Click += new System.EventHandler(this.textBox1_Clicked);
             // 
             // dataGridView1
             // 
@@ -104,7 +105,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Useradministration";
             this.Text = "Benutzerverwaltung";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
