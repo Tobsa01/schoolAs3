@@ -22,14 +22,6 @@ namespace WindowsFormsApp1
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         DataTable table = new DataTable { Locale = System.Globalization.CultureInfo.InvariantCulture };
 
-        private bool first_load = true;
-        private int positionDelete;
-        private int positionReserve;
-        private int positionIssue;
-        private int positionReturn;
-
-        private int positionUpdate;
-
         private static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|Librators.mdf;Integrated Security=True";
 
 
@@ -88,13 +80,6 @@ namespace WindowsFormsApp1
                 
                 // Hide filter string column
                 dataGridView1.Columns["_RowString"].Visible = false;
-                
-                addButton("Löschen", ref positionDelete);
-                addButton("Reservieren", ref positionReserve);
-                addButton("Ausleihe", ref positionIssue);
-                addButton("Rückgabe", ref positionReturn);
-                addButton("Bearbeiten", ref positionUpdate);
-
                 // Resize the DataGridView columns to fit the newly loaded content.
 
                 dataGridView1.AutoResizeColumns(
