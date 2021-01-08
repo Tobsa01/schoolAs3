@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using WindowsFormsApp1.Model;
 using WindowsFormsApp1.View;
 
@@ -31,8 +32,7 @@ namespace WindowsFormsApp1.Controller
 
         public void CloseProgram()
         {
-            var mainController = ControllerManager.Get<MainController>();
-            mainController.CloseForm();
+            Application.Exit();
         }
 
         public void HideForm()

@@ -143,6 +143,7 @@ namespace WindowsFormsApp1
             this.Name = "Bookadministration";
             this.Text = "Bücherverwaltung";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Bookadministration_FormClose);
             this.ResumeLayout(false);
             this.PerformLayout();
 

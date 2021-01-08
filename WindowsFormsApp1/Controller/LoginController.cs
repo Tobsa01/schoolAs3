@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using WindowsFormsApp1.Controller;
 using WindowsFormsApp1.Model;
 
 namespace WindowsFormsApp1
@@ -31,8 +32,7 @@ namespace WindowsFormsApp1
 
         public void CloseProgram()
         {
-            var mainController = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.MainController>();
-            mainController.CloseForm();
+            Application.Exit();
         }
 
         public void IsLoginCorrect(string username, string password)
@@ -41,19 +41,19 @@ namespace WindowsFormsApp1
             Users loginUser = UserModel.select_User_for_Login(username, password);
             CurrentUser.setCurrentUser(loginUser);
             if (CurrentUser.getInstance().LastName != null) {
+                MainController.afterLogin();
                 if (CurrentUser.getAdmin()) {
                         HideForm();
                         var admin = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.AdminController>();
                         admin.ShowForm();
                 } else {
                     HideForm();
-                    var user = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.BookController>();
-                    user.ShowForm();
-                    user.RefreshData();
+                    var bookController = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.BookController>();
+                    bookController.ShowForm();
                     }
                 }
             else {
-                ErrorWindow.ShowCustomErrorWindow("wrong user or password", "login failed", MessageBoxIcon.Error, MessageBoxButtons.OK);
+                ErrorWindow.ShowCustomErrorWindow("Benutzername oder Passwort ist falsch. Bitte versuchen Sie es erneut.", "Login fehlgeschlagen", MessageBoxIcon.Error, MessageBoxButtons.OK);
             }
         }
         public bool IsAdmin(string username)
