@@ -185,5 +185,9 @@ namespace WindowsFormsApp1
             loginController.ClearForm();
             loginController.ShowForm();
         }
+        private void Bookadministration_FormClose(object sender, FormClosedEventArgs e)
+        {
+            Controller.CloseProgram();
+        }
     } 
 }

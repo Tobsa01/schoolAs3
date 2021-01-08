@@ -13,8 +13,6 @@ namespace WindowsFormsApp1.Controller
         {
             View = view;
             Model = new MainModel();
-            ControllerManager.Register(this);
-            ControllerManager.Register(new AdminController());
             ControllerManager.Register(new LoginController());
             OnStart();
         }
@@ -34,11 +32,6 @@ namespace WindowsFormsApp1.Controller
             var loginController = ControllerManager.Get<LoginController>();
             loginController.ClearForm();
             loginController.ShowForm();
-        }
-
-        public void CloseForm()
-        {
-            View.CloseForm();
         }
     }
 }

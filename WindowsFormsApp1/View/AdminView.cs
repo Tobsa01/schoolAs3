@@ -49,12 +49,6 @@ namespace WindowsFormsApp1
             RefreshData();
             Show();
         }
-
-        private void AdminView_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Controller.CloseProgram();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Controller.Buecher();
@@ -125,6 +119,18 @@ namespace WindowsFormsApp1
             dataGridView1.DataSource = bindingSource1;
             GetData("select * from Issues;", dataGridView1, bindingSource1);
            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            HideForm();
+            var loginController = ControllerManager.Get<LoginController>();
+            loginController.ClearForm();
+            loginController.ShowForm();
+        }
+        private void AdminView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Controller.CloseProgram();
         }
     }
 }

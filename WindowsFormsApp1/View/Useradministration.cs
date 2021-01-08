@@ -122,5 +122,18 @@ namespace WindowsFormsApp1
         {
             GetData();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            HideForm();
+            var loginController = ControllerManager.Get<LoginController>();
+            loginController.ClearForm();
+            loginController.ShowForm();
+        }
+
+        private void UserAdministration_FormClose(object sender, FormClosedEventArgs e)
+        {
+            Controller.CloseProgram();
+        }
     }
 }
