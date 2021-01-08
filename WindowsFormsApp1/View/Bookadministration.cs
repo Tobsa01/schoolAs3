@@ -156,6 +156,7 @@ namespace WindowsFormsApp1
                     getUserIdController.ShowForm();
                     //Controller.ReserveBook(iSBN, inventoryNumber);
                 }
+                else { Bookadministration.UserID = CurrentUser.getMANumber(); }
                Controller.ReserveBook(iSBN, inventoryNumber); 
                 
             }

@@ -21,7 +21,8 @@ namespace WindowsFormsApp1
         private BindingSource bindingSource1 = new BindingSource();
         private BindingSource bindingSource2 = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
-        DataTable table = new DataTable { Locale = System.Globalization.CultureInfo.InvariantCulture };
+        DataTable table1 = new DataTable { Locale = System.Globalization.CultureInfo.InvariantCulture };
+        DataTable table2 = new DataTable { Locale = System.Globalization.CultureInfo.InvariantCulture };
 
         private bool first_load = true;
 
@@ -65,7 +66,7 @@ namespace WindowsFormsApp1
             Controller.User();
         }
 
-        private void GetData(string selectCommand, DataGridView dgv, BindingSource bs)
+        private void GetData(string selectCommand, DataGridView dgv, BindingSource bs, DataTable table)
         {
             try
             {
@@ -87,16 +88,26 @@ namespace WindowsFormsApp1
                         }
                         dataRow[dcRowString] = sb.ToString();
                     }
-                    first_load = false;
+                    //first_load = false;
                 }
-
+                first_load = false;
                 // Hide filter string column
 
                 dataAdapter.Fill(table);
 
                 bs.DataSource = table;
-                dgv.Columns["_RowString"].Visible = false;
-                dgv.Columns["IssueID"].Visible = false;
+                
+                if (dgv == dataGridView1)
+                {
+                    dgv.Columns["IssueID"].Visible = false;
+                    dgv.Columns["_RowString"].Visible = false;
+
+                }
+                else
+                {
+                    dgv.Columns["ReservationsID"].Visible = false;
+                }
+                
                 dgv.AutoResizeColumns(
                     DataGridViewAutoSizeColumnsMode.AllCells);
             }
@@ -109,22 +120,27 @@ namespace WindowsFormsApp1
         private void Form1_Load(object sender, EventArgs e)
         {
            
-            dataGridView1.DataSource = bindingSource1;
-           GetData("select * from Issues;", dataGridView1, bindingSource1);
-         
+          /* dataGridView1.DataSource = bindingSource1;
+           GetData("select * from Issues;", dataGridView1, bindingSource1, table1);
+            dataGridView2.DataSource = bindingSource2;
+            GetData("select * from Reservations;", dataGridView2, bindingSource2, table2);*/
+
         }
 
         private void Search_txb_TextChanged(object sender, EventArgs e)
         {
-
-            table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", Search_txb.Text);
+            //hier
+            if (Search_txb.Text != "Suche" || Search_txb.Text != "") table1.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", Search_txb.Text);
 
         }
         private void RefreshData()
         {
             dataGridView1.DataSource = bindingSource1;
-            GetData("select * from Issues;", dataGridView1, bindingSource1);
-           
+            GetData("select * from Issues;", dataGridView1, bindingSource1, table1);
+
+            dataGridView2.DataSource = bindingSource2;
+            GetData("select * from Reservations;", dataGridView2, bindingSource2, table2);
+
         }
     }
 }
