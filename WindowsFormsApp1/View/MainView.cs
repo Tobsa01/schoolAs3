@@ -14,10 +14,5 @@ namespace WindowsFormsApp1.View
             Controller = new MainController(this);
             Model = Controller.Model;
         }
-
-        public void CloseForm()
-        {
-            Application.Exit();
-        }
     }
 }

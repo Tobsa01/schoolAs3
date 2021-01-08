@@ -35,6 +35,7 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -46,7 +47,7 @@
             this.Search_txb.MaximumSize = new System.Drawing.Size(122, 25);
             this.Search_txb.MinimumSize = new System.Drawing.Size(122, 25);
             this.Search_txb.Name = "Search_txb";
-            this.Search_txb.Size = new System.Drawing.Size(122, 25);
+            this.Search_txb.Size = new System.Drawing.Size(122, 22);
             this.Search_txb.TabIndex = 8;
             this.Search_txb.Text = "Suche";
             this.Search_txb.TextChanged += new System.EventHandler(this.Search_txb_TextChanged);
@@ -123,11 +124,27 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "Reservierungen";
             // 
+            // button2
+            // 
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button2.Location = new System.Drawing.Point(6, 542);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(98, 25);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Log out";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Library_Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 589);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView2);
@@ -141,6 +158,7 @@
             this.Shown += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdminView_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,6 +172,7 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button2;
     }
 }
 

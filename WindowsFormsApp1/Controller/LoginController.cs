@@ -32,8 +32,7 @@ namespace WindowsFormsApp1
 
         public void CloseProgram()
         {
-            var mainController = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.MainController>();
-            mainController.CloseForm();
+            Application.Exit();
         }
 
         public void IsLoginCorrect(string username, string password)
@@ -49,11 +48,8 @@ namespace WindowsFormsApp1
                         admin.ShowForm();
                 } else {
                     HideForm();
-
                     var bookController = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.BookController>();
                     bookController.ShowForm();
-                    bookcontroller.RefreshData();
-
                     }
                 }
             else {
