@@ -68,8 +68,7 @@ namespace WindowsFormsApp1.Model
 
         public static void lendBook(Reservation res)
         {
-            //Todo: Popup-> Ausleihen auf welche Userid
-            if (!IsReserved(res, CurrentUser.getUserId()))
+            if (!IsReserved(res, UserModel.selectUserWithManNr(Bookadministration.UserID).UserID ))
             {
                 Issues issue = new Issues
                 {
