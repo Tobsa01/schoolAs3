@@ -1,6 +1,5 @@
 ﻿using WindowsFormsApp1.Model;
 using WindowsFormsApp1.View;
-using WindowsFormsApp1.Controller;
 
 namespace WindowsFormsApp1.Controller
 {
@@ -13,6 +12,7 @@ namespace WindowsFormsApp1.Controller
         {
             View = view;
             Model = new MainModel();
+            ControllerManager.Register(this);
             ControllerManager.Register(new LoginController());
             OnStart();
         }
@@ -20,12 +20,11 @@ namespace WindowsFormsApp1.Controller
         {
             ControllerManager.Clear();
             ControllerManager.Register(new AdminController());
-            ControllerManager.Register(new LoginController());
             ControllerManager.Register(new UserController());
             ControllerManager.Register(new BookController());
             ControllerManager.Register(new AddUserController());
             ControllerManager.Register(new AddBookController());
-            ControllerManager.Register(new LendController());
+            ControllerManager.Register(new GetUserIdController());
         }
 
         public void OnStart()
