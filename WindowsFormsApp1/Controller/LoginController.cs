@@ -38,8 +38,7 @@ namespace WindowsFormsApp1
 
         public void IsLoginCorrect(string username, string password)
         {
-            //Model.AddUserToDictionary();
-            //Model.AddUserToAdminList();
+            
             Users loginUser = UserModel.select_User_for_Login(username, password);
             CurrentUser.setCurrentUser(loginUser);
             if (CurrentUser.getInstance().LastName != null) {
@@ -50,12 +49,15 @@ namespace WindowsFormsApp1
                         admin.ShowForm();
                 } else {
                     HideForm();
+
                     var bookController = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.BookController>();
                     bookController.ShowForm();
+                    bookcontroller.RefreshData();
+
                     }
                 }
             else {
-                ErrorWindow.ShowCustomErrorWindow("wrong user or password", "login failed", MessageBoxIcon.Error, MessageBoxButtons.OK);
+                ErrorWindow.ShowCustomErrorWindow("Benutzername oder Passwort ist falsch. Bitte versuchen Sie es erneut.", "Login fehlgeschlagen", MessageBoxIcon.Error, MessageBoxButtons.OK);
             }
         }
         public bool IsAdmin(string username)

@@ -16,6 +16,7 @@ namespace WindowsFormsApp1.View
             InitializeComponent();
             Controller = controller;
             Model = Controller.Model;
+            
         }
 
         public void HideForm()
