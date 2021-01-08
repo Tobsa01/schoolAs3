@@ -37,8 +37,7 @@ namespace WindowsFormsApp1
 
         public void IsLoginCorrect(string username, string password)
         {
-            //Model.AddUserToDictionary();
-            //Model.AddUserToAdminList();
+            
             Users loginUser = UserModel.select_User_for_Login(username, password);
             CurrentUser.setCurrentUser(loginUser);
             if (CurrentUser.getInstance().LastName != null) {
@@ -48,8 +47,9 @@ namespace WindowsFormsApp1
                         admin.ShowForm();
                 } else {
                     HideForm();
-                    var user = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.UserController>();
+                    var user = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.BookController>();
                     user.ShowForm();
+                    user.RefreshData();
                     }
                 }
             else {

@@ -54,6 +54,7 @@ namespace WindowsFormsApp1
             addButton("Löschen");
             addButton("Reservieren");
             addButton("Ausleihe");
+            addButton("Rückgabe");
             addButton("Bearbeiten");
             table.Columns.Add("_RowString", typeof(string));
             dataGridView1.Columns["_RowString"].Visible = false;
@@ -81,11 +82,13 @@ namespace WindowsFormsApp1
                 // Hide filter string column
                 dataGridView1.Columns["_RowString"].Visible = false;
                 // Resize the DataGridView columns to fit the newly loaded content.
-
+                
+               
                 dataGridView1.AutoResizeColumns(
                     DataGridViewAutoSizeColumnsMode.AllCells);
 
                 dataAdapter.Update((DataTable)bindingSource1.DataSource);
+               
             }
             catch (SqlException sql)
             {
@@ -107,6 +110,19 @@ namespace WindowsFormsApp1
         {
             dataGridView1.DataSource = bindingSource1;
             GetData("select * from Books");
+            if (!CurrentUser.getAdmin())
+            {
+                dataGridView1.Columns["Ausleihe"].Visible = false;
+                dataGridView1.Columns["Rückgabe"].Visible = false;
+                dataGridView1.Columns["Bearbeiten"].Visible = false;
+                dataGridView1.Columns["Löschen"].Visible = false;
+                btnAdd.Visible = false;
+                button2.Visible = false;
+
+            }
+            else { button2.Visible = false; }
+            dataAdapter.Update((DataTable)bindingSource1.DataSource);
+
         }
         private int HeaderPosition(string value)
         {
@@ -122,24 +138,24 @@ namespace WindowsFormsApp1
             {
                 Controller.Delete(iSBN, inventoryNumber);
             }
-            if (e.ColumnIndex == dataGridView1.Columns["Reservieren"].Index)
+            if (e.ColumnIndex == HeaderPosition("Reservieren"))
             {
                 Controller.ReserveBook(iSBN, inventoryNumber);
             }
-            if (e.ColumnIndex == dataGridView1.Columns["Bearbeiten"].Index)
+            if (e.ColumnIndex == HeaderPosition("Bearbeiten"))
             {
                 Controller.ShowBookInformation(iSBN, inventoryNumber);
             }
 
-            if (e.ColumnIndex == dataGridView1.Columns["Rückgabe"].Index)
+            if (e.ColumnIndex == HeaderPosition("Rückgabe"))
             {
                 Controller.ReturnBook(iSBN, inventoryNumber);
             }
  
-             if (e.ColumnIndex == dataGridView1.Columns["Ausleihe"].Index)
+             if (e.ColumnIndex == HeaderPosition("Ausleihe"))
 
             {
-                Controller.ShowBookInformation(iSBN, inventoryNumber);
+                Controller.LendBook(iSBN, inventoryNumber);
             }
             RefreshData();
         }
@@ -161,13 +177,50 @@ namespace WindowsFormsApp1
         public void RefreshData()
         {
             dataGridView1.DataSource = bindingSource1;
-            GetData("select * from Books");
+            GetData("select * from Books b Where NOT b.ISBN = ANY (SELECT FK_ISBN FROM Issues Where IssueState ='aus' AND FK_ISBN =b.ISBN)");
             if(textBox1.Text != "Suche") table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
+            if (!CurrentUser.getAdmin())
+            {
+                dataGridView1.Columns["Ausleihe"].Visible = false;
+                dataGridView1.Columns["Rückgabe"].Visible = false;
+                dataGridView1.Columns["Bearbeiten"].Visible = false;
+                dataGridView1.Columns["Löschen"].Visible = false;
+                btnAdd.Visible = false;
+                button2.Visible = false;
+
+            }
+            else { button2.Visible = false; }
+            dataAdapter.Update((DataTable)bindingSource1.DataSource);
+
+        }
+       
+        public void GetAllData()
+        {
+            dataGridView1.DataSource = bindingSource1;
+            GetData("select * from Books");
+            if (textBox1.Text != "Suche") table.DefaultView.RowFilter = string.Format("[_RowString] LIKE '%{0}%'", textBox1.Text);
+            if (!CurrentUser.getAdmin())
+            {
+                dataGridView1.Columns["Ausleihe"].Visible = false;
+                dataGridView1.Columns["Rückgabe"].Visible = false;
+                dataGridView1.Columns["Bearbeiten"].Visible = false;
+                dataGridView1.Columns["Löschen"].Visible = false;
+                btnAdd.Visible = false;
+                button2.Visible = false;
+
+            }
+            else { button2.Visible = false; }
         }
 
+        //statt true -> Variable setzen
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Controller.Add();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     } 
 }

@@ -124,8 +124,7 @@ namespace WindowsFormsApp1
         {
             dataGridView1.DataSource = bindingSource1;
             GetData("select * from Issues;", dataGridView1, bindingSource1);
-            dataGridView2.DataSource = bindingSource2;
-            GetData("select * from Reservations;", dataGridView2, bindingSource2);
+           
         }
     }
 }
