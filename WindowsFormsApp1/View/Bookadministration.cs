@@ -36,11 +36,18 @@ namespace WindowsFormsApp1
         {
             dataAdapter = new SqlDataAdapter("SELECT * FROM Books", connectionString);
             dataAdapter.Fill(table);
-            addButton("Löschen");
             addButton("Reservieren");
             addButton("Ausleihe");
             addButton("Rückgabe");
-            addButton("Bearbeiten");
+            if (CurrentUser.getAdmin())
+            {
+                addButton("Löschen");
+                addButton("Bearbeiten");
+            } else
+            {
+                btnAdd.Hide();
+                button2.Hide();
+            }
             table.Columns.Add("_RowString", typeof(string));
             dataGridView1.Columns["_RowString"].Visible = false;
         }
@@ -88,18 +95,12 @@ namespace WindowsFormsApp1
         {
             string inventoryNumber = dataGridView1.Rows[e.RowIndex].Cells[HeaderPosition("Inventar_Number")].Value.ToString();
             string iSBN = dataGridView1.Rows[e.RowIndex].Cells[HeaderPosition("ISBN")].Value.ToString();
-            if (e.ColumnIndex == HeaderPosition("Löschen"))
-            {
-                Controller.Delete(iSBN, inventoryNumber);
-            }
+            
             if (e.ColumnIndex == HeaderPosition("Reservieren"))
             {
                 Controller.ReserveBook(iSBN, inventoryNumber);
             }
-            if (e.ColumnIndex == HeaderPosition("Bearbeiten"))
-            {
-                Controller.ShowBookInformation(iSBN, inventoryNumber);
-            }
+           
             if (e.ColumnIndex == HeaderPosition("Rückgabe"))
             {
                 Controller.ReturnBook(iSBN, inventoryNumber);
@@ -107,6 +108,17 @@ namespace WindowsFormsApp1
             if (e.ColumnIndex == HeaderPosition("Ausleihe"))
             {
                 Controller.LendBook(iSBN, inventoryNumber);
+            }
+            if (CurrentUser.getAdmin())
+            {
+                if (e.ColumnIndex == HeaderPosition("Löschen"))
+                {
+                    Controller.Delete(iSBN, inventoryNumber);
+                }
+                if (e.ColumnIndex == HeaderPosition("Bearbeiten"))
+                {
+                    Controller.ShowBookInformation(iSBN, inventoryNumber);
+                }
             }
             RefreshData();
         }

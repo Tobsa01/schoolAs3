@@ -15,11 +15,15 @@ namespace WindowsFormsApp1.Controller
             ControllerManager.Register(this);
             ControllerManager.Register(new AdminController());
             ControllerManager.Register(new LoginController());
+            
+            OnStart();
+        }
+        public static void afterLogin()
+        {
             ControllerManager.Register(new UserController());
             ControllerManager.Register(new BookController());
             ControllerManager.Register(new AddUserController());
             ControllerManager.Register(new AddBookController());
-            OnStart();
         }
 
         public void OnStart()
