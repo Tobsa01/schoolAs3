@@ -147,6 +147,7 @@
     <Compile Include="Controller\AddBookController.cs" />
     <Compile Include="Controller\AddUserController.cs" />
     <Compile Include="Controller\BookController.cs" />
+    <Compile Include="Controller\GetUserIdController.cs" />
     <Compile Include="Model\BookAdminModel.cs" />
     <Compile Include="Model\CurrentUser.cs" />
     <Compile Include="Model\ErrorWindow.cs" />
@@ -218,6 +219,12 @@
     <Compile Include="Reservations.cs">
       <DependentUpon>LibratorsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="View\GetUserIdView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\GetUserIdView.Designer.cs">
+      <DependentUpon>GetUserIdView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Useradministration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +267,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\GetUserIdView.resx">
+      <DependentUpon>GetUserIdView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Useradministration.resx">
       <DependentUpon>Useradministration.cs</DependentUpon>
     </EmbeddedResource>

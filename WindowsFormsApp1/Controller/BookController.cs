@@ -60,7 +60,9 @@ namespace WindowsFormsApp1.Controller
         public void ReserveBook(string iSBN, string inventory_Number)
         {
             int id = BookAdminModel.maxReservationId();
-            Reservation res = new Reservation(id, iSBN, inventory_Number, CurrentUser.getUserId(), CurrentUser.getMANumber());
+            //hier
+            Users u = UserModel.selectUserWithManNr(Bookadministration.UserID);
+            Reservation res = new Reservation(id, iSBN, inventory_Number, u.UserID,u.MANumber);
             BookAdminModel.reserveBook(res);
         }
         public void ShowBookInformation(string iSBN, string inventory_Number)
@@ -70,10 +72,13 @@ namespace WindowsFormsApp1.Controller
             bcontroller.updateBook(b);
         }
 
+
+
         public void LendBook(string iSBN, string inventoryNumber)
         {
             int id = BookAdminModel.maxReservationId();
-            Reservation res = new Reservation(id, iSBN, inventoryNumber, CurrentUser.getUserId(), CurrentUser.getMANumber());
+            Users u = UserModel.selectUserWithManNr(Bookadministration.UserID);
+            Reservation res = new Reservation(id, iSBN, inventoryNumber, u.UserID, u.MANumber);
             BookAdminModel.lendBook(res);
         }
 
@@ -81,6 +86,13 @@ namespace WindowsFormsApp1.Controller
         {
             Reservation res = new Reservation(0, iSBN, inventoryNumber, CurrentUser.getUserId(), CurrentUser.getMANumber());
             BookAdminModel.returnBook(res);
+        }
+
+        public void AskUserID()
+        {
+            
+            var getUserIDcontroller = WindowsFormsApp1.Controller.ControllerManager.Get<WindowsFormsApp1.Controller.GetUserIdController>();
+            
         }
     }
 }

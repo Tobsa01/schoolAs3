@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
     public partial class Bookadministration : Form
     {
         private BookController Controller { get; }
+        public static int UserID { get; set; }
         private WindowsFormsApp1.Model.BookAdminModel Model { get; }
         private BindingSource bindingSource1 = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
@@ -35,6 +36,7 @@ namespace WindowsFormsApp1
             bindingSource1.DataSource = table;
             dataGridView1.DataSource = bindingSource1;
             createTable();
+            CurrentUser.getInstance();
             GetData("select * from Books");
         }
         public void HideForm()
@@ -46,6 +48,7 @@ namespace WindowsFormsApp1
         {
             
             Show();
+            RefreshData();
             
         }
         private void createTable()
@@ -147,10 +150,19 @@ namespace WindowsFormsApp1
             }
             if (e.ColumnIndex == HeaderPosition("Reservieren"))
             {
-                Controller.ReserveBook(iSBN, inventoryNumber);
+                if (CurrentUser.getAdmin())
+                {
+                    var getUserIdController = ControllerManager.Get<GetUserIdController>();
+                    getUserIdController.ShowForm();
+                    //Controller.ReserveBook(iSBN, inventoryNumber);
+                }
+               Controller.ReserveBook(iSBN, inventoryNumber); 
+                
             }
             if (e.ColumnIndex == HeaderPosition("Bearbeiten"))
             {
+                if (CurrentUser.getAdmin()) { var getUserIdController = ControllerManager.Get<GetUserIdController>(); }
+
                 Controller.ShowBookInformation(iSBN, inventoryNumber);
             }
 
@@ -162,6 +174,12 @@ namespace WindowsFormsApp1
              if (e.ColumnIndex == HeaderPosition("Ausleihe"))
 
             {
+                if (CurrentUser.getAdmin())
+                {
+                    var getUserIdController = ControllerManager.Get<GetUserIdController>();
+                    getUserIdController.ShowForm();
+                    //Controller.ReserveBook(iSBN, inventoryNumber);
+                }
                 Controller.LendBook(iSBN, inventoryNumber);
             }
             RefreshData();
@@ -198,8 +216,15 @@ namespace WindowsFormsApp1
                 button2.Visible = false;
 
             }
-            else { button1.Visible = false;
+            else { 
+                button1.Visible = false;
 
+                dataGridView1.Columns["Ausleihe"].Visible = true;
+                dataGridView1.Columns["Rückgabe"].Visible = true;
+                dataGridView1.Columns["Bearbeiten"].Visible = true;
+                dataGridView1.Columns["Löschen"].Visible = true;
+                btnAdd.Visible = true;
+                button2.Visible = true;
                 GetData("select * from Books");}
     
                 dataAdapter.Update((DataTable)bindingSource1.DataSource);
